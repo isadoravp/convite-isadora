@@ -15,7 +15,7 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom right, #0d1b4c, #1a2a6c);
+  background: linear-gradient(to bottom right, #0a0a0a, #1a1a1a);
   color: #f5d76e;
   text-align: center;
   position: relative;
@@ -23,22 +23,23 @@ html, body {
   perspective: 1500px;
 }
 
-/* Fundo animado */
+/* Fundo animado preto e dourado */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: url("https://static.vecteezy.com/ti/vetor-gratis/p1/15396203-design-luxuoso-e-elegante-fundo-azul-marinho-de-luxo-com-glitter-dourado-vetor.jpg") repeat;
-  animation: stars 60s linear infinite;
-  opacity: 0.5;
+  background: url("https://i.ibb.co/X5mbShk/fundo-dourado-preto-luxo.jpg") repeat;
+  background-size: cover;
+  animation: brilho 60s linear infinite;
+  opacity: 0.55;
   z-index: 0;
   pointer-events: none;
 }
 
-@keyframes stars {
+@keyframes brilho {
   from { background-position: 0 0; }
-  to { background-position: 10000px 10000px; }
+  to { background-position: 2000px 2000px; }
 }
 
 /* --- PARTICULAS MÁGICAS --- */
@@ -63,8 +64,8 @@ body::before {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 440px;
-  height: 280px;
+  width: clamp(280px, 80vw, 440px);
+  height: clamp(180px, 50vw, 280px);
   perspective: 2000px;
   z-index: 10;
 }
@@ -103,7 +104,12 @@ body::before {
 }
 
 /* --- ESCONDER CONTEÚDO ANTES --- */
-#conteudo { opacity: 0; transition: opacity 1s ease; max-width: 100vw; }
+#conteudo { 
+  opacity: 0; 
+  transition: opacity 1s ease; 
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 
 /* --- HEADER --- */
 header {
@@ -119,7 +125,7 @@ header h1 {
   margin: 0 auto 15px;
   color: #f5d76e;
   text-shadow: 0 0 12px rgba(255,215,0,0.8);
-  background: rgba(13,27,76,0.92);
+  background: rgba(0,0,0,0.7);
   padding: 10px 20px;
   border-radius: 15px;
   border: 3px solid #f5d76e;
@@ -140,7 +146,7 @@ header p {
   font-size: 1em;
   font-style: italic;
   color: #fff5cc;
-  background: rgba(13,27,76,0.7);
+  background: rgba(0,0,0,0.6);
   padding: 8px 15px;
   border-radius: 12px;
   display: inline-block;
@@ -156,7 +162,7 @@ header p {
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  background: rgba(13,27,76,0.92);
+  background: rgba(0,0,0,0.7);
   padding: 10px;
   border-radius: 15px;
   border: 3px solid #f5d76e;
@@ -168,7 +174,7 @@ header p {
 
 .tempo {
   padding: 8px 12px;
-  background: rgba(13,27,76,0.7);
+  background: rgba(50,50,50,0.7);
   border-radius: 12px;
   border: 2px solid #f5d76e;
   min-width: 50px;
@@ -178,146 +184,15 @@ header p {
 .tempo h2 { margin:0; font-size:1.5em; color:#f5d76e; }
 .tempo span { font-size:0.8em; color:#fff; }
 
-/* --- SEÇÃO INFO --- */
-.info {
-  margin: 20px auto;
-  width: 90%;
-  max-width: 480px;
-  padding: 20px;
-  background: rgba(13,27,76,0.92);
-  border-radius: 20px;
-  border: 3px solid #f5d76e;
-  box-shadow: 0 0 25px rgba(245,215,110,0.6);
-  position: relative;
-  z-index: 1;
-}
-
-.info h2 { font-size: 1.4em; margin-bottom: 12px; color:#f5d76e; }
-.info p { font-size: 1em; margin:6px 0; color:#fff; }
-
-/* --- BOTÕES --- */
-.btns {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.btns a {
-  background: #f5d76e;
-  color: #0d1b4c;
-  padding: 8px 14px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 0.95em;
-  font-weight: 600;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-.btns a:hover { transform: scale(1.05); box-shadow:0 6px 16px rgba(0,0,0,0.5); }
-.btns img { width:20px; height:20px; margin-right:6px; vertical-align:middle; }
-
-/* --- BOTÃO LISTA PRESENTES --- */
-#lista-btn {
-  background: #f5d76e;
-  color: #0d1b4c;
-  padding: 10px 16px;
-  border-radius: 25px;
-  font-weight: 600;
-  margin-top: 15px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-#lista-btn:hover { transform: scale(1.05); box-shadow:0 6px 16px rgba(0,0,0,0.5); }
-
-/* --- MODAL LISTA PRESENTES COM ANIMAÇÃO --- */
-#lista-modal {
-  display: none;
-  position: fixed;
-  top:0; left:0;
-  width: 100vw; height:100vh;
-  background: rgba(0,0,0,0.7);
-  z-index: 20;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-#lista-modal .modal-content {
-  background: rgba(255, 223, 0, 0.95);
-  padding: 20px 25px;
-  border-radius: 15px;
-  border: 3px solid #B8860B;
-  max-width: 90%;
-  max-height: 80%;
-  overflow-y: auto;
-  text-align: left;
-  color: #3e2f0b;
-  transform: scale(0.7);
-  animation: zoomIn 0.5s ease forwards;
-}
-
-@keyframes zoomIn {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-#lista-modal h2 {
-  margin-bottom: 12px;
-  font-family: 'Great Vibes', cursive;
-  font-size: 2em;
-  text-align: center;
-}
-
-#lista-modal ul { list-style: disc; padding-left: 20px; }
-#lista-modal li { margin: 8px 0; }
-
-/* Fechar modal */
-#lista-modal .fechar {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 1.5em;
-  font-weight: bold;
-  cursor: pointer;
-  color: #3e2f0b;
-}
-
-/* --- RODAPÉ --- */
-footer {
-  margin:20px 0 20px;
-  font-size:0.8em;
-  color:#fff5cc;
-  position:relative;
-  z-index:1;
-  background: rgba(13,27,76,0.92);
-  padding: 8px 15px;
-  border-radius:12px;
-  border:2px solid #f5d76e;
-  display:inline-block;
-  box-shadow: 0 0 20px rgba(245,215,110,0.6);
-  max-width:95%;
-  word-wrap: break-word;
-}
-
 /* --- RESPONSIVIDADE --- */
 @media(max-width:480px){
+  html, body { overflow-x:hidden; }
   header h1{font-size:1.8em;padding:8px 12px;}
   header h1 span:nth-child(2){font-size:1.2em;}
   header p{font-size:0.9em;padding:6px 10px;}
   .tempo h2{font-size:1.2em;}
   .tempo{min-width:40px;padding:5px 8px;}
-  .info{width:95%;padding:15px;}
-  .btns a{font-size:0.85em;padding:6px 10px;}
   #contador{padding:8px;gap:5px;}
-  footer{font-size:0.75em;padding:6px 8px;}
 }
 </style>
 </head>
@@ -341,8 +216,7 @@ footer {
   <div class="tempo"><h2 id="segundos">0</h2><span>Seg</span></div>
 </div>
 </header>
-
-
+</div>
 
 <script>
 // Contador
@@ -366,14 +240,14 @@ setInterval(atualizarContador, 1000);
 const esquerda = document.querySelector('.carta-lado.esquerdo');
 const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 5s ease-in-out forwards";
-  direita.style.animation = "abrirCartaDireita 5s ease-in-out forwards";
+  esquerda.style.animation = "abrirCartaEsquerda 6.5s ease-in-out forwards";
+  direita.style.animation = "abrirCartaDireita 6.5s ease-in-out forwards";
 }, 500);
 
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 5500);
+}, 7500);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
@@ -384,17 +258,6 @@ for(let i=0;i<30;i++){
   p.style.animationDuration=(3+Math.random()*3)+'s';
   document.body.appendChild(p);
 }
-
-// Modal Lista de Presentes
-const modal = document.getElementById("lista-modal");
-const btn = document.getElementById("lista-btn");
-const fechar = document.querySelector("#lista-modal .fechar");
-
-btn.onclick = () => { 
-  modal.style.display = "flex"; 
-}
-fechar.onclick = () => { modal.style.display = "none"; }
-window.onclick = (e) => { if(e.target === modal) modal.style.display = "none"; }
 </script>
 
 </body>
