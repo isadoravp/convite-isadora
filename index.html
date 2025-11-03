@@ -60,7 +60,7 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* --- CARTA DUPLA / CASTELO --- */
+/* --- CARTA DUPLA --- */
 #cartaContainer {
   position: fixed;
   top: 50%; left: 50%;
@@ -71,13 +71,13 @@ body::before {
   z-index: 10;
 }
 
-/* Castelo dividido em duas portas */
 .carta-lado {
   position: absolute;
   width: 50%;
   height: 100%;
-  background: url('https://e7.pngegg.com/pngimages/607/965/png-clipart-wall-decal-room-mural-cartoon-castle-cartoon-character-blue.png') no-repeat center/cover; /* exemplo de porta de castelo */
-  border-radius: 0;
+  background: linear-gradient(135deg, #FFD700, #E6C200);
+  border: 3px solid #B8860B;
+  border-radius: 10px;
   box-shadow: 0 0 40px rgba(0,0,0,0.5);
   transform-origin: left;
   display: flex;
@@ -161,28 +161,25 @@ header p {
   margin: 20px auto;
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* força todos na mesma linha */
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
   background: rgba(0,0,0,0.7);
-  padding: 15px;
+  padding: 15px; /* maior no mobile */
   border-radius: 15px;
   border: 3px solid #f5d76e;
   box-shadow: 0 0 25px rgba(245,215,110,0.6);
   max-width: 95%;
   z-index: 1;
   position: relative;
-  overflow-x: auto; /* scroll horizontal se necessário */
 }
 
 .tempo {
-  padding: 8px 10px;
+  padding: 10px 14px; /* maior no mobile */
   background: rgba(50,50,50,0.7);
   border-radius: 12px;
   border: 2px solid #f5d76e;
-  min-width: 45px; 
+  min-width: 60px;
   box-shadow: 0 0 15px rgba(245,215,110,0.3);
-  flex-shrink: 1;
-  white-space: nowrap; /* evita quebra de linha */
 }
 
 .tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
@@ -198,12 +195,12 @@ header p {
 }
 
 .save-date h2 {
-  font-size: 5em;
+  font-size: 5em; /* maior no mobile */
   margin-bottom: 8px;
 }
 
 .save-date p {
-  font-size: 4em;
+  font-size: 4em; /* maior no mobile */
   font-weight: 500;
   letter-spacing: 2px;
 }
@@ -214,11 +211,11 @@ header p {
 }
 
 /* --- RESPONSIVIDADE --- */
-@media(max-width:768px){
+@media(max-width:768px){ /* Prioridade mobile/tablet */
   header h1{font-size:3em;padding:12px 25px;}
   header h1 span:nth-child(2){font-size:2em;}
   .tempo h2{font-size:1.8em;}
-  .tempo{min-width:45px;padding:8px 10px;}
+  .tempo{min-width:60px;padding:10px 14px;}
   #contador{padding:15px;gap:8px;}
   .save-date h2{font-size:5em;}
   .save-date p{font-size:4em;}
@@ -227,10 +224,10 @@ header p {
 </head>
 <body>
 
-<!-- CARTA DUPLA / CASTELO -->
+<!-- CARTA DUPLA -->
 <div id="cartaContainer">
-  <div class="carta-lado esquerdo"></div>
-  <div class="carta-lado direito"></div>
+  <div class="carta-lado esquerdo">Toque aqui</div>
+  <div class="carta-lado direito">Você é uma pessoa especial…</div>
 </div>
 
 <!-- CONTEÚDO -->
@@ -274,14 +271,14 @@ setInterval(atualizarContador, 1000);
 const esquerda = document.querySelector('.carta-lado.esquerdo');
 const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 4s ease-in-out forwards";
-  direita.style.animation = "abrirCartaDireita 4s ease-in-out forwards";
+  esquerda.style.animation = "abrirCartaEsquerda 4s ease-in-out forwards"; // reduzido
+  direita.style.animation = "abrirCartaDireita 4s ease-in-out forwards";  // reduzido
 }, 300);
 
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 4300);
+}, 4300); // reduzido
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
