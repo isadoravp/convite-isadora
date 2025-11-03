@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convite Interativo</title>
+<title>Convite Encantado</title>
 <style>
   body {
     margin: 0;
@@ -13,23 +13,41 @@
     align-items: center;
     background: #f8f0f5;
     font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
   }
 
-  /* Rosa */
+  /* Partículas mágicas */
+  .particula {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #fff6f6, #ff85a2);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: flutuar 2s linear forwards;
+  }
+
+  @keyframes flutuar {
+    0% { transform: translate(0,0) scale(0); opacity:1; }
+    100% { transform: translate(var(--x), var(--y)) scale(1); opacity:0; }
+  }
+
+  /* Rosa girando */
   .rosa {
     position: absolute;
     width: 100px;
     height: 100px;
     background: url('https://i.imgur.com/2K4jvXU.png') no-repeat center/contain;
     opacity: 0;
-    transform: scale(0);
+    transform: scale(0) rotate(0deg);
     transition: transform 1.5s ease, opacity 1.5s ease;
     z-index: 2;
   }
 
   .rosa.active {
     opacity: 1;
-    transform: scale(1.5) translateY(-50px);
+    transform: scale(1.5) translateY(-50px) rotate(720deg);
   }
 
   /* Convite */
@@ -95,9 +113,24 @@
   const rosa = document.getElementById('rosa');
   const convite = document.getElementById('convite');
 
-  // 1. Mostrar rosa
+  // Função para criar partículas mágicas
+  function criarParticulas() {
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'particula';
+      const x = (Math.random() * 200 - 100) + 'px';
+      const y = (Math.random() * -200 - 50) + 'px';
+      p.style.setProperty('--x', x);
+      p.style.setProperty('--y', y);
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 2000);
+    }
+  }
+
+  // 1. Mostrar rosa girando
   setTimeout(() => {
     rosa.classList.add('active');
+    criarParticulas();
   }, 500);
 
   // 2. Mostrar convite depois da rosa
