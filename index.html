@@ -53,10 +53,7 @@ body::before {
 .particle { width:4px; height:4px; background: radial-gradient(circle,#ffea80,#b8860b); }
 .spark { width:2px; height:2px; background: radial-gradient(circle,#FFD700,#FFC700); animation-duration: 4s; }
 
-@keyframes float {
-  0% { transform:translateY(0) translateX(0); opacity:1; }
-  100% { transform:translateY(-800px) translateX(50px); opacity:0; }
-}
+@keyframes float { 0% { transform:translateY(0) translateX(0); opacity:1; } 100% { transform:translateY(-800px) translateX(50px); opacity:0; } }
 
 /* Castelo container */
 #casteloContainer {
@@ -69,52 +66,33 @@ body::before {
   z-index:10;
 }
 
-/* Castelo azul/dourado estilo Bela e a Fera */
+/* Castelo estilo A Bela e a Fera */
 .castelo {
   position:relative;
   width:100%;
   height:100%;
-  background: linear-gradient(to bottom,#1a2a6c,#2a5298); /* Azul royal */
-  border:3px solid #FFD700; /* dourado */
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
+  border:3px solid #D4AF37;
   border-radius:12px;
   box-shadow:0 0 60px rgba(0,0,0,0.5);
-}
-
-/* Frase Salva esta data com partículas girando */
-.save-date-castelo {
-  position: absolute;
-  top: 5%; 
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Great Vibes', cursive;
-  font-size: 3em;
-  color: #FFD700;
-  text-shadow: 0 0 15px rgba(255,215,0,0.9);
-  animation: brilhoSaveDate 1.5s ease-in-out infinite alternate;
-  z-index: 20;
-}
-@keyframes brilhoSaveDate {
-  0% { text-shadow: 0 0 10px rgba(255,215,0,0.7); color:#FFD700; }
-  50% { text-shadow: 0 0 25px rgba(255,215,0,1); color:#FFE066; }
-  100% { text-shadow: 0 0 10px rgba(255,215,0,0.7); color:#FFD700; }
 }
 
 /* Torres laterais */
 .torre {
   position:absolute;
   bottom:0;
-  border:3px solid #FFD700;
-  background: linear-gradient(to bottom,#1a2a6c,#2a5298);
+  border:3px solid #D4AF37;
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
   border-radius:6px;
   box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
 }
 .torre.esquerda { width:12%; height:50%; left:5%; }
 .torre.direita { width:12%; height:50%; right:5%; }
 
-/* Torre central (porta principal) */
+/* Torre central */
 .torre.central { width:20%; height:65%; left:40%; z-index:2; border-radius:6px; }
 
-/* Telhados */
+/* Telhados dourados */
 .telhado {
   position:absolute;
   width:100%;
@@ -122,18 +100,32 @@ body::before {
   top:-40%;
   left:0;
   clip-path: polygon(50% 0%,0% 100%,100% 100%);
-  background: linear-gradient(145deg,#003399,#3366CC);
+  background: linear-gradient(145deg,#B8860B,#FFD700);
   box-shadow: 0 -4px 8px rgba(0,0,0,0.4) inset,0 0 10px rgba(255,215,0,0.3);
-  border-left:2px solid #FFD700;
-  border-right:2px solid #FFD700;
+  border-left:2px solid #D4AF37;
+  border-right:2px solid #D4AF37;
 }
+
+/* Bandeiras douradas pulsantes (removida a central) */
+.bandeira {
+  position:absolute;
+  width:25%; height:15%;
+  top:-50%;
+  background: linear-gradient(45deg,#FFD700,#FFC700);
+  clip-path: polygon(0 0,100% 50%,0 100%);
+  animation: bandeiraAnim 2s ease-in-out infinite alternate, brilhoBandeira 1.5s ease-in-out infinite alternate;
+}
+.bandeira.esquerda { left:0%; }
+.bandeira.direita { left:auto; right:0%; }
+@keyframes bandeiraAnim { 0% { transform: rotate(0deg); } 100% { transform: rotate(10deg); } }
+@keyframes brilhoBandeira { 0% { box-shadow:0 0 15px #FFD700; } 50% { box-shadow:0 0 30px #FFD700; } 100% { box-shadow:0 0 15px #FFD700; } }
 
 /* Portas centrais */
 .porta.central-esquerda, .porta.central-direita {
   position:absolute;
   bottom:0;
   width:25%; height:65%;
-  background: linear-gradient(to bottom,#FFD700,#E6C200);
+  background: linear-gradient(to bottom,#D4AF37,#FFD700);
   border:2px solid #B8860B;
   border-radius:0 0 6px 6px;
   box-shadow: inset -2px 0 10px rgba(0,0,0,0.2), inset 2px 0 10px rgba(0,0,0,0.2);
@@ -143,28 +135,22 @@ body::before {
 .porta.central-direita { left:50%; transform-origin:right; }
 .porta.central-esquerda { left:25%; }
 
-/* Janelas quadradas estilo Bela e a Fera */
+/* Janelas quadradas */
 .luz-janela {
   position:absolute;
   width:12%; height:15%;
-  background: linear-gradient(to bottom,#88c0ff,#1f3d7a);
-  border:2px solid #FFD700;
+  background: radial-gradient(circle, rgba(255,223,0,0.6), rgba(255,223,0,0));
   border-radius:3px;
   opacity:0;
-  box-shadow:0 0 15px #88c0ff;
   animation: brilhoJanela 1.5s ease-in-out infinite alternate;
 }
 .luz1 { top:15%; left:10%; }
 .luz2 { top:15%; right:10%; }
 .luz3 { top:35%; left:40%; }
 .luz4 { top:35%; right:40%; }
-@keyframes brilhoJanela { 
-  0% { box-shadow:0 0 10px #88c0ff; opacity:0.6; } 
-  50% { box-shadow:0 0 25px #88c0ff; opacity:1; } 
-  100% { box-shadow:0 0 10px #88c0ff; opacity:0.6; } 
-}
+@keyframes brilhoJanela { 0% { box-shadow:0 0 10px #FFD700; opacity:0.6; } 50% { box-shadow:0 0 25px #FFD700; opacity:1; } 100% { box-shadow:0 0 10px #FFD700; opacity:0.6; } }
 
-/* Animação abertura portas */
+/* Abertura portas */
 @keyframes abrirPortaCentralEsquerda { 0%{transform:rotateY(0deg);}100%{transform:rotateY(-120deg);opacity:0;} }
 @keyframes abrirPortaCentralDireita { 0%{transform:rotateY(0deg);}100%{transform:rotateY(120deg);opacity:0;} }
 
@@ -217,20 +203,20 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 .save-date h2{ font-size:5em; margin-bottom:8px; }
 .save-date p{ font-size:4em; font-weight:500; letter-spacing:2px; }
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
+
 </style>
 </head>
 <body>
 
 <div id="casteloContainer">
   <div class="castelo">
-    <div class="save-date-castelo">Salve esta data</div>
-    <div class="torre esquerda"><div class="telhado"></div></div>
+    <div class="torre esquerda"><div class="telhado"></div><div class="bandeira esquerda"></div></div>
     <div class="torre.central">
       <div class="telhado"></div>
       <div class="porta central-esquerda"></div>
       <div class="porta central-direita"></div>
     </div>
-    <div class="torre direita"><div class="telhado"></div></div>
+    <div class="torre direita"><div class="telhado"></div><div class="bandeira direita"></div></div>
 
     <!-- Luz janelas -->
     <div class="luz-janela luz1"></div>
@@ -306,28 +292,6 @@ for(let i=0;i<40;i++){
   s.style.height=(2+Math.random()*3)+'px';
   s.style.animationDuration=(3+Math.random()*3)+'s';
   document.body.appendChild(s);
-}
-
-// Partículas girando ao redor da frase
-const frase = document.querySelector('.save-date-castelo');
-for(let i=0;i<15;i++){
-  const part = document.createElement('div');
-  part.classList.add('spark');
-  part.style.position='absolute';
-  part.style.width='3px';
-  part.style.height='3px';
-  part.style.borderRadius='50%';
-  part.style.background='radial-gradient(circle,#FFD700,#FFFACD)';
-  part.style.top='50%';
-  part.style.left='50%';
-  part.style.transformOrigin='-40px 0px';
-  part.style.animation=`girar${i} ${3+Math.random()*2}s linear infinite`;
-  frase.appendChild(part);
-
-  // Criando keyframes dinâmicos
-  const style = document.createElement('style');
-  style.textContent=`@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}}`;
-  document.head.appendChild(style);
 }
 </script>
 
