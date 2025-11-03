@@ -108,12 +108,12 @@ body::before {
   border-right:2px solid #FFD700;
 }
 
-/* Bandeiras mais suaves */
+/* Bandeiras douradas */
 .bandeira {
   position:absolute;
   width:25%; height:15%;
   top:-50%;
-  background:red;
+  background: linear-gradient(45deg,#FFD700,#FFC700);
   clip-path: polygon(0 0,100% 50%,0 100%);
   animation: bandeiraAnim 2s ease-in-out infinite alternate;
 }
@@ -140,6 +140,20 @@ body::before {
 .porta.central-direita { left:50%; transform-origin:right; }
 .porta.central-esquerda { left:25%; }
 
+/* Luz saindo das janelas */
+.luz-janela {
+  position:absolute;
+  width:10%; height:12%;
+  background: radial-gradient(circle, rgba(255,223,0,0.6), rgba(255,223,0,0));
+  border-radius:50%;
+  opacity:0;
+  pointer-events:none;
+}
+.luz1 { top:15%; left:10%; }
+.luz2 { top:15%; right:10%; }
+.luz3 { top:35%; left:40%; }
+.luz4 { top:35%; right:40%; }
+
 /* Animação abertura porta central */
 @keyframes abrirPortaCentralEsquerda {
   0% { transform: rotateY(0deg); }
@@ -149,19 +163,6 @@ body::before {
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(120deg); opacity:0; }
 }
-
-/* Janelas iluminadas */
-.janela {
-  position:absolute;
-  width:10%; height:12%;
-  background:#3e2f0b;
-  border-radius:3px;
-  box-shadow:0 0 10px #ffea80 inset;
-}
-.janela1 { top:15%; left:10%; }
-.janela2 { top:15%; right:10%; }
-.janela3 { top:35%; left:40%; }
-.janela4 { top:35%; right:40%; }
 
 /* Conteúdo inicial invisível */
 #conteudo { opacity:0; transition: opacity 0.7s ease; }
@@ -226,10 +227,12 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
       <div class="porta central-direita"></div>
     </div>
     <div class="torre direita"><div class="telhado"></div><div class="bandeira direita"></div></div>
-    <div class="janela janela1"></div>
-    <div class="janela janela2"></div>
-    <div class="janela janela3"></div>
-    <div class="janela janela4"></div>
+
+    <!-- Luz janelas -->
+    <div class="luz-janela luz1"></div>
+    <div class="luz-janela luz2"></div>
+    <div class="luz-janela luz3"></div>
+    <div class="luz-janela luz4"></div>
   </div>
 </div>
 
@@ -263,13 +266,15 @@ const atualizarContador=()=>{
 };
 setInterval(atualizarContador,1000);
 
-// Animação porta central e revelar conteúdo
+// Animação porta central e luz janelas
 const portaEsq=document.querySelector('.porta.central-esquerda');
 const portaDir=document.querySelector('.porta.central-direita');
+const luzs=document.querySelectorAll('.luz-janela');
 
 setTimeout(()=>{
   portaEsq.style.animation="abrirPortaCentralEsquerda 2.5s ease-in-out forwards";
   portaDir.style.animation="abrirPortaCentralDireita 2.5s ease-in-out forwards";
+  luzs.forEach(l=>l.style.opacity=1); // luzes aparecem ao abrir
 },200);
 
 setTimeout(()=>{
