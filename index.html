@@ -188,20 +188,11 @@ header p {
 /* --- SAVE THE DATE --- */
 .save-date {
   font-family: 'Great Vibes', cursive;
-  color: #f5d76e; /* cor dourada fixa */
-  text-shadow: 0 0 10px rgba(245,215,110,0.8); /* brilho consistente */
+  color: #f5d76e;
+  text-shadow: 0 0 10px rgba(255,215,0,0.8);
   margin-top: 15px;
   animation: aparecer 2s ease-in-out both;
-  background: rgba(0,0,0,0.5); /* fundo translúcido */
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: 3px solid #f5d76e; /* moldura estilo castelo */
-}
-
-.save-date h2, .save-date p {
-  color: #f5d76e; /* garante dourado puro */
-  text-shadow: 0 0 10px rgba(245,215,110,0.8);
+  /* Moldura removida */
 }
 
 .save-date h2 {
@@ -229,13 +220,8 @@ header p {
   .tempo h2{font-size:1.2em;}
   .tempo{min-width:40px;padding:5px 8px;}
   #contador{padding:8px;gap:5px;}
-  .save-date {
-    padding: 6px 12px;
-    border-radius: 10px;
-    border: 2px solid #f5d76e;
-  }
-  .save-date h2{font-size:1.8em; color:#f5d76e; text-shadow:0 0 8px rgba(245,215,110,0.8);}
-  .save-date p{font-size:1.2em; color:#f5d76e; text-shadow:0 0 8px rgba(245,215,110,0.8);}
+  .save-date h2{font-size:2.5em;} /* Aumentado no mobile */
+  .save-date p{font-size:2em;}   /* Aumentado no mobile */
 }
 </style>
 </head>
