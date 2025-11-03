@@ -19,6 +19,7 @@ html, body {
   color:#f5d76e;
   text-align:center;
   overflow-x:hidden;
+  overflow-y:auto;
   position:relative;
   perspective:1500px;
 }
@@ -74,8 +75,8 @@ body::before {
   position:relative;
   width:100%;
   height:100%;
-  background: linear-gradient(to bottom,#1a2a6c,#2a5298); /* Azul royal */
-  border:3px solid #FFD700; /* dourado */
+  background: linear-gradient(to bottom,#1a2a6c,#2a5298);
+  border:3px solid #FFD700;
   border-radius:12px;
   box-shadow:0 0 60px rgba(0,0,0,0.5);
 }
@@ -87,7 +88,7 @@ body::before {
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Great Vibes', cursive;
-  font-size: 2.5em;
+  font-size: 2em;
   color: #FFD700;
   text-shadow: 0 0 15px rgba(255,215,0,0.9);
   animation: brilhoSaveDate 1.5s ease-in-out infinite alternate;
@@ -207,25 +208,62 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 .tempo h2{ margin:0; font-size:1.8em; color:#f5d76e; }
 .tempo span{ font-size:1em; color:#fff; }
 
+/* Save the date neon */
 .save-date {
   font-family: 'Great Vibes', cursive;
   color: #f5d76e;
   text-shadow:0 0 15px rgba(255,215,0,1);
   margin-top:20px;
-  animation: aparecer 1s ease-in-out both;
+  animation: aparecer 0.8s ease-in-out both;
 }
 .save-date h2{ font-size:5em; margin-bottom:8px; }
 .save-date p{
-  font-size:4em;
-  font-weight:500;
-  letter-spacing:2px;
-  padding:10px 20px;
-  border:2px solid rgba(255,215,0,0.6);
-  border-radius:15px;
-  background: rgba(0,0,0,0.3);
-  box-shadow: 0 0 15px rgba(255,215,0,0.7), 0 0 30px rgba(255,215,0,0.5);
+  font-size:5em;
+  font-weight:700;
+  color:#FFD700;
+  text-shadow:
+     0 0 5px #FFD700,
+     0 0 10px #FFD700,
+     0 0 20px #FFD700,
+     0 0 30px #FFE066,
+     0 0 40px #FFE066,
+     0 0 55px #FFFACD,
+     0 0 75px #FFFACD;
+  animation: neonPulse 1.8s ease-in-out infinite alternate;
 }
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
+@keyframes neonPulse {
+  0% {
+    text-shadow:
+      0 0 5px #FFD700,
+      0 0 10px #FFD700,
+      0 0 20px #FFD700,
+      0 0 30px #FFE066,
+      0 0 40px #FFE066,
+      0 0 55px #FFFACD,
+      0 0 75px #FFFACD;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #FFD700,
+      0 0 20px #FFD700,
+      0 0 30px #FFD700,
+      0 0 40px #FFE066,
+      0 0 50px #FFE066,
+      0 0 65px #FFFACD,
+      0 0 85px #FFFACD;
+  }
+  100% {
+    text-shadow:
+      0 0 5px #FFD700,
+      0 0 10px #FFD700,
+      0 0 20px #FFD700,
+      0 0 30px #FFE066,
+      0 0 40px #FFE066,
+      0 0 55px #FFFACD,
+      0 0 75px #FFFACD;
+  }
+}
 </style>
 </head>
 <body>
@@ -285,15 +323,16 @@ const portaDir=document.querySelector('.porta.central-direita');
 const luzs=document.querySelectorAll('.luz-janela');
 
 setTimeout(()=>{
-  portaEsq.style.animation="abrirPortaCentralEsquerda 2.5s ease-in-out forwards";
-  portaDir.style.animation="abrirPortaCentralDireita 2.5s ease-in-out forwards";
+  portaEsq.style.animation="abrirPortaCentralEsquerda 2s ease-in-out forwards";
+  portaDir.style.animation="abrirPortaCentralDireita 2s ease-in-out forwards";
   luzs.forEach(l=>l.style.opacity=1);
 },200);
 
+// Transição castelo -> conteúdo
 setTimeout(()=>{
   document.getElementById('casteloContainer').style.display='none';
   document.getElementById('conteudo').style.opacity=1;
-},1800); // Conteúdo aparece mais rápido
+},2200);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
@@ -333,7 +372,6 @@ for(let i=0;i<15;i++){
   part.style.animation=`girar${i} ${3+Math.random()*2}s linear infinite`;
   frase.appendChild(part);
 
-  // Criando keyframes dinâmicos
   const style = document.createElement('style');
   style.textContent=`@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}}`;
   document.head.appendChild(style);
