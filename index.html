@@ -53,10 +53,7 @@ body::before {
 .particle { width:4px; height:4px; background: radial-gradient(circle,#ffea80,#b8860b); }
 .spark { width:2px; height:2px; background: radial-gradient(circle,#FFD700,#FFC700); animation-duration: 4s; }
 
-@keyframes float {
-  0% { transform:translateY(0) translateX(0); opacity:1; }
-  100% { transform:translateY(-800px) translateX(50px); opacity:0; }
-}
+@keyframes float { 0% { transform:translateY(0) translateX(0); opacity:1; } 100% { transform:translateY(-800px) translateX(50px); opacity:0; } }
 
 /* Castelo container */
 #casteloContainer {
@@ -64,64 +61,79 @@ body::before {
   top:50%; left:50%;
   transform:translate(-50%,-50%);
   width:90vw; max-width:500px;
-  height:65vw; max-height:420px;
+  height:65vw; max-height:400px;
   perspective:1500px;
   z-index:10;
 }
 
-/* Castelo azul/dourado cinematográfico */
+/* Castelo estilo A Bela e a Fera */
 .castelo {
   position:relative;
   width:100%;
   height:100%;
-  background: linear-gradient(to bottom,#00264d,#003366);
-  border:3px solid #FFD700;
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
+  border:3px solid #D4AF37;
   border-radius:12px;
-  box-shadow:0 0 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,215,0,0.15);
+  box-shadow:0 0 60px rgba(0,0,0,0.5);
 }
 
 /* Torres laterais */
 .torre {
   position:absolute;
   bottom:0;
-  border:3px solid #FFD700;
-  background: linear-gradient(to bottom,#00264d,#003366);
+  border:3px solid #D4AF37;
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
   border-radius:6px;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
 }
 .torre.esquerda { width:12%; height:50%; left:5%; }
 .torre.direita { width:12%; height:50%; right:5%; }
 
-/* Torre central (porta principal) */
+/* Torres extras pequenas laterais */
+.torre.pequena {
+  position:absolute;
+  bottom:0;
+  width:6%; height:35%;
+  border:2px solid #D4AF37;
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
+  border-radius:4px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+}
+.torre.peq-esq { left:18%; }
+.torre.peq-dir { right:18%; }
+
+/* Torre central */
 .torre.central { width:20%; height:65%; left:40%; z-index:2; border-radius:6px; }
 
-/* Telhados curvos estilo cinematográfico */
+/* Telhados dourados */
 .telhado {
   position:absolute;
   width:100%;
-  height:50%;
-  top:-50%;
+  height:40%;
+  top:-40%;
   left:0;
-  clip-path: polygon(50% 0%,15% 100%,85% 100%);
-  background: linear-gradient(145deg,#003399,#3366CC);
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.4) inset,0 0 12px rgba(255,215,0,0.3);
-  border-left:2px solid #FFD700;
-  border-right:2px solid #FFD700;
-  border-radius:15% 15% 0 0;
+  clip-path: polygon(50% 0%,0% 100%,100% 100%);
+  background: linear-gradient(145deg,#B8860B,#FFD700);
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.4) inset,0 0 10px rgba(255,215,0,0.3);
+  border-left:2px solid #D4AF37;
+  border-right:2px solid #D4AF37;
 }
 
-/* Bandeiras douradas cinematográficas */
+/* Bandeiras douradas pulsantes (laterais e torres pequenas) */
 .bandeira {
   position:absolute;
-  width:18%; height:12%;
-  top:-55%;
+  width:25%; height:15%;
+  top:-50%;
   background: linear-gradient(45deg,#FFD700,#FFC700);
   clip-path: polygon(0 0,100% 50%,0 100%);
   animation: bandeiraAnim 2s ease-in-out infinite alternate, brilhoBandeira 1.5s ease-in-out infinite alternate;
 }
 .bandeira.esquerda { left:0%; }
-.bandeira.direita { right:0%; }
-@keyframes bandeiraAnim { 0% { transform: rotate(0deg); } 100% { transform: rotate(12deg); } }
+.bandeira.direita { left:auto; right:0%; }
+.bandeira.peq { width:50%; height:12%; top:-60%; }
+.bandeira.peq-esq { left:0; }
+.bandeira.peq-dir { right:0; }
+@keyframes bandeiraAnim { 0% { transform: rotate(0deg); } 100% { transform: rotate(10deg); } }
 @keyframes brilhoBandeira { 0% { box-shadow:0 0 15px #FFD700; } 50% { box-shadow:0 0 30px #FFD700; } 100% { box-shadow:0 0 15px #FFD700; } }
 
 /* Portas centrais */
@@ -129,9 +141,9 @@ body::before {
   position:absolute;
   bottom:0;
   width:25%; height:65%;
-  background: linear-gradient(to bottom,#FFD700,#E6C200);
+  background: linear-gradient(to bottom,#D4AF37,#FFD700);
   border:2px solid #B8860B;
-  border-radius:0 0 8px 8px;
+  border-radius:0 0 6px 6px;
   box-shadow: inset -2px 0 10px rgba(0,0,0,0.2), inset 2px 0 10px rgba(0,0,0,0.2);
   transform-origin:left;
   backface-visibility:hidden;
@@ -139,12 +151,12 @@ body::before {
 .porta.central-direita { left:50%; transform-origin:right; }
 .porta.central-esquerda { left:25%; }
 
-/* Janelas quadradas cinematográficas */
+/* Janelas quadradas */
 .luz-janela {
   position:absolute;
   width:12%; height:15%;
-  background: linear-gradient(to bottom,#FFD700,#FFC700);
-  border-radius:4px;
+  background: radial-gradient(circle, rgba(255,223,0,0.6), rgba(255,223,0,0));
+  border-radius:3px;
   opacity:0;
   animation: brilhoJanela 1.5s ease-in-out infinite alternate;
 }
@@ -207,12 +219,14 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 .save-date h2{ font-size:5em; margin-bottom:8px; }
 .save-date p{ font-size:4em; font-weight:500; letter-spacing:2px; }
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
+
 </style>
 </head>
 <body>
 
 <div id="casteloContainer">
   <div class="castelo">
+    <!-- Torres principais -->
     <div class="torre esquerda"><div class="telhado"></div><div class="bandeira esquerda"></div></div>
     <div class="torre.central">
       <div class="telhado"></div>
@@ -220,6 +234,10 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
       <div class="porta central-direita"></div>
     </div>
     <div class="torre direita"><div class="telhado"></div><div class="bandeira direita"></div></div>
+
+    <!-- Torres pequenas extras -->
+    <div class="torre pequena torres-peq peq-esq"><div class="telhado"></div><div class="bandeira peq peq-esq"></div></div>
+    <div class="torre pequena torres-peq peq-dir"><div class="telhado"></div><div class="bandeira peq peq-dir"></div></div>
 
     <!-- Luz janelas -->
     <div class="luz-janela luz1"></div>
