@@ -122,7 +122,7 @@ header {
 
 header h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 3em; /* maior no mobile */
+  font-size: 3em;
   margin: 0 auto 20px;
   color: #f5d76e;
   text-shadow: 0 0 15px rgba(255,215,0,0.9);
@@ -137,7 +137,7 @@ header h1 {
 }
 
 header h1 span:nth-child(2) {
-  font-size: 2em; /* maior no mobile */
+  font-size: 2em;
   display: block;
   margin-top: 5px;
 }
@@ -161,7 +161,7 @@ header p {
   margin: 20px auto;
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap;   /* forçar tudo na mesma linha */
+  flex-wrap: nowrap;
   gap: 8px;
   background: rgba(0,0,0,0.7);
   padding: 15px;
@@ -171,18 +171,18 @@ header p {
   max-width: 95%;
   z-index: 1;
   position: relative;
-  overflow-x: auto;   /* permite scroll horizontal se necessário */
+  overflow-x: auto;
 }
 
 .tempo {
-  padding: 8px 10px;       /* Ajustado para caber melhor */
+  padding: 8px 10px;
   background: rgba(50,50,50,0.7);
   border-radius: 12px;
   border: 2px solid #f5d76e;
-  min-width: 45px;         /* reduzido */
+  min-width: 45px;
   box-shadow: 0 0 15px rgba(245,215,110,0.3);
-  flex-shrink: 1;          /* permite encolher se precisar */
-  white-space: nowrap;      /* evita quebra de linha */
+  flex-shrink: 1;
+  white-space: nowrap;
 }
 
 .tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
@@ -198,12 +198,12 @@ header p {
 }
 
 .save-date h2 {
-  font-size: 5em; /* maior no mobile */
+  font-size: 5em;
   margin-bottom: 8px;
 }
 
 .save-date p {
-  font-size: 4em; /* maior no mobile */
+  font-size: 4em;
   font-weight: 500;
   letter-spacing: 2px;
 }
@@ -214,7 +214,7 @@ header p {
 }
 
 /* --- RESPONSIVIDADE --- */
-@media(max-width:768px){ /* Prioridade mobile/tablet */
+@media(max-width:768px){
   header h1{font-size:3em;padding:12px 25px;}
   header h1 span:nth-child(2){font-size:2em;}
   .tempo h2{font-size:1.8em;}
@@ -270,19 +270,18 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador, 1000);
 
-// Carta dupla: animação e revelar conteúdo (mais rápido)
-const esquerda = document.querySelector('.carta-lado.esquerdo');
+// Carta dupla: animação e revelar conteúdo super rápido
 const esquerda = document.querySelector('.carta-lado.esquerdo');
 const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 2s ease-in-out forwards"; // carta abre mais rápido
+  esquerda.style.animation = "abrirCartaEsquerda 2s ease-in-out forwards"; 
   direita.style.animation = "abrirCartaDireita 2s ease-in-out forwards";
 }, 100);
 
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 1800);
+}, 2000); // conteúdo aparece 2s após a carta abrir
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
