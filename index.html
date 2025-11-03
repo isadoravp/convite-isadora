@@ -66,10 +66,10 @@ body::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 500px;
-  height: 65vw;
-  max-height: 400px;
+  width: 80vw;
+  max-width: 400px;
+  height: 35vh;
+  max-height: 200px;
   perspective: 1500px;
   z-index: 10;
 }
@@ -148,9 +148,12 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 
 /* Save the Date efeito neon piscante */
 .save-date { font-family: 'Great Vibes', cursive; color:#f5d76e; text-shadow:0 0 15px rgba(255,215,0,1); margin-top:20px; animation: aparecer 1s ease-in-out both; }
-.save-date h2{ font-size:5em; margin-bottom:8px; }
+.save-date h2{ 
+  font-size: clamp(2rem, 6vw, 5rem);
+  margin-bottom:8px;
+}
 .save-date p{
-  font-size:4em;
+  font-size: clamp(1.5rem, 5vw, 4rem);
   font-weight:700;
   letter-spacing:2px;
   color:#FFD700;
@@ -161,9 +164,24 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
   animation: neonBlink 1.5s ease-in-out infinite alternate;
 }
   
-@keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
-@keyframes neonBlink { 0% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } 50% { text-shadow:0 0 25px #FFD700,0 0 50px #FFD700; } 100% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } }
-
+@keyframes aparecer {
+  from{
+    opacity:0;
+       transform:translateY(15px);
+  } to{opacity:1;
+       transform:translateY(0);
+      }
+}
+@keyframes neonBlink { 
+  0% { 
+    text-shadow:0 0 10px #FFD700,0 0 20px #FFD700;
+  } 50% {
+    text-shadow:0 0 25px #FFD700,0 0 50px #FFD700;
+  } 100% {
+    text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; 
+  } 
+}
+  
 </style>
 </head>
 <body>
