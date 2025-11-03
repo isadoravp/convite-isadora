@@ -89,6 +89,19 @@ body::before {
 .torre.esquerda { width:12%; height:50%; left:5%; }
 .torre.direita { width:12%; height:50%; right:5%; }
 
+/* Torres extras pequenas laterais */
+.torre.pequena {
+  position:absolute;
+  bottom:0;
+  width:6%; height:35%;
+  border:2px solid #D4AF37;
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
+  border-radius:4px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+}
+.torre.peq-esq { left:18%; }
+.torre.peq-dir { right:18%; }
+
 /* Torre central */
 .torre.central { width:20%; height:65%; left:40%; z-index:2; border-radius:6px; }
 
@@ -106,7 +119,7 @@ body::before {
   border-right:2px solid #D4AF37;
 }
 
-/* Bandeiras douradas pulsantes (removida a central) */
+/* Bandeiras douradas pulsantes (laterais e torres pequenas) */
 .bandeira {
   position:absolute;
   width:25%; height:15%;
@@ -117,6 +130,9 @@ body::before {
 }
 .bandeira.esquerda { left:0%; }
 .bandeira.direita { left:auto; right:0%; }
+.bandeira.peq { width:50%; height:12%; top:-60%; }
+.bandeira.peq-esq { left:0; }
+.bandeira.peq-dir { right:0; }
 @keyframes bandeiraAnim { 0% { transform: rotate(0deg); } 100% { transform: rotate(10deg); } }
 @keyframes brilhoBandeira { 0% { box-shadow:0 0 15px #FFD700; } 50% { box-shadow:0 0 30px #FFD700; } 100% { box-shadow:0 0 15px #FFD700; } }
 
@@ -210,6 +226,7 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 
 <div id="casteloContainer">
   <div class="castelo">
+    <!-- Torres principais -->
     <div class="torre esquerda"><div class="telhado"></div><div class="bandeira esquerda"></div></div>
     <div class="torre.central">
       <div class="telhado"></div>
@@ -217,6 +234,10 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
       <div class="porta central-direita"></div>
     </div>
     <div class="torre direita"><div class="telhado"></div><div class="bandeira direita"></div></div>
+
+    <!-- Torres pequenas extras -->
+    <div class="torre pequena torres-peq peq-esq"><div class="telhado"></div><div class="bandeira peq peq-esq"></div></div>
+    <div class="torre pequena torres-peq peq-dir"><div class="telhado"></div><div class="bandeira peq peq-dir"></div></div>
 
     <!-- Luz janelas -->
     <div class="luz-janela luz1"></div>
