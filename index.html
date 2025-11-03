@@ -31,19 +31,21 @@ body::before {
   top:0; left:0;
   width:100%;
   height:100%;
-  /* Gradiente mais simples com preto e dourado */
-  background: linear-gradient(120deg, #000, #1a1a1a, #c8a800, #2b1d00, #000);
-  background-size: 400% 400%; /* tamanho maior para movimentos suaves */
-  animation: brilho-dourado-preto 60s ease infinite; /* mais lento e suave */
+  /* Gradiente com preto e dourado intercalados */
+  background: linear-gradient(120deg, #000, #2b1d00, #c8a800, #000, #1a1a1a);
+  background-size: 200% 200%;
+  animation: brilho-dourado-preto 30s linear infinite;
   opacity:0.9;
   z-index:0;
   pointer-events:none;
 }
 
 @keyframes brilho-dourado-preto {
-  0% { background-position:0% 50%; }
-  50% { background-position:100% 50%; }
-  100% { background-position:0% 50%; }
+  0% { background-position:0% 0%; }
+  25% { background-position:50% 50%; }
+  50% { background-position:100% 100%; }
+  75% { background-position:50% 50%; }
+  100% { background-position:0% 0%; }
 }
 
 /* Partículas mágicas */
@@ -278,4 +280,3 @@ for(let i=0;i<15;i++){
 
 </body>
 </html>
-
