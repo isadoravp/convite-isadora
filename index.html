@@ -12,6 +12,12 @@
 
 /* --- BODY --- */
 html, body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* garante que use toda altura */
+  overflow: hidden; /* remove scroll */
   width:100%;
   min-height:100vh;
   font-family:'Poppins',sans-serif;
@@ -66,10 +72,10 @@ body::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 500px;
-  height: 65vw;
-  max-height: 400px;
+  width: 80vw;
+  max-width: 400px;
+  height: 35vh;
+  max-height: 200px;
   perspective: 1500px;
   z-index: 10;
 }
@@ -141,16 +147,50 @@ header h1 { font-family:'Great Vibes', cursive; font-size:3em; margin:0 auto 20p
 header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 
 /* Contador */
-#contador { margin:20px auto; display:flex; justify-content:center; flex-wrap:nowrap; gap:8px; background: rgba(0,0,0,0.7); padding:15px; border-radius:15px; border:3px solid #f5d76e; box-shadow:0 0 25px rgba(245,215,110,0.6); max-width:95%; overflow-x:auto; }
-.tempo { padding:8px 10px; background: rgba(50,50,50,0.7); border-radius:12px; border:2px solid #f5d76e; min-width:45px; flex-shrink:1; white-space:nowrap; }
-.tempo h2{ margin:0; font-size:1.8em; color:#f5d76e; }
-.tempo span{ font-size:1em; color:#fff; }
+#contador { margin:20px auto;
+           display:flex;
+           justify-content:center;
+           flex-wrap:nowrap;
+           gap:8px;
+           background: rgba(0,0,0,0.7);
+           padding:15px;
+           border-radius:15px;
+           border:3px solid #f5d76e;
+           box-shadow:0 0 25px rgba(245,215,110,0.6);
+           max-width:95%;
+           overflow-x:auto;
+          }
+.tempo { 
+  padding:8px 10px;
+  background: rgba(50,50,50,0.7);
+  border-radius:12px;
+  border:2px solid #f5d76e;
+  min-width:45px;
+  flex-shrink:1;
+  white-space:nowrap;
+}
+.tempo h2{
+  margin:0;
+  font-size:1.8em;
+  color:#f5d76e;
+}
+.tempo span{ 
+  font-size:1em;
+  color:#fff;
+}
 
 /* Save the Date efeito neon piscante */
-.save-date { font-family: 'Great Vibes', cursive; color:#f5d76e; text-shadow:0 0 15px rgba(255,215,0,1); margin-top:20px; animation: aparecer 1s ease-in-out both; }
-.save-date h2{ font-size:5em; margin-bottom:8px; }
+.save-date { 
+  font-family: 'Great Vibes', cursive; color:#f5d76e;
+  text-shadow:0 0 15px rgba(255,215,0,1);
+  margin-top:20px;
+  animation: aparecer 1s ease-in-out both;
+}
+.save-date h2{ 
+  font-size: clamp(2rem, 6vw, 5rem);
+  margin-bottom:8px; }
 .save-date p{
-  font-size:4em;
+  font-size: clamp(1.5rem, 5vw, 4rem);
   font-weight:700;
   letter-spacing:2px;
   color:#FFD700;
