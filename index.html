@@ -185,45 +185,34 @@ header p {
 .tempo h2 { margin:0; font-size:1.5em; color:#f5d76e; }
 .tempo span { font-size:0.8em; color:#fff; }
 
-/* --- SAVE THE DATE COM MOLDURA CASTELO --- */
+/* --- SAVE THE DATE --- */
 .save-date {
   font-family: 'Great Vibes', cursive;
-  color: #f5d76e;
-  text-shadow: 0 0 10px rgba(255,215,0,0.8);
+  color: #f5d76e; /* cor dourada fixa */
+  text-shadow: 0 0 10px rgba(245,215,110,0.8); /* brilho consistente */
   margin-top: 15px;
   animation: aparecer 2s ease-in-out both;
-
+  background: rgba(0,0,0,0.5); /* fundo translúcido */
   display: inline-block;
-  padding: 15px 25px;
-  border: 4px double #f5d76e;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.5);
-  box-shadow: 0 0 20px rgba(245,215,110,0.7), 0 0 40px rgba(255,223,0,0.4) inset;
-  position: relative;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 3px solid #f5d76e; /* moldura estilo castelo */
 }
-
-.save-date::before, .save-date::after {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 25px;
-  top: -25px;
-  background: #f5d76e;
-  border: 2px solid #e6c200;
-  border-radius: 3px;
-}
-
-.save-date::before { left: 10px; }
-.save-date::after { right: 10px; }
 
 .save-date h2, .save-date p {
-  animation: pulse 2s infinite;
-  margin: 5px 0;
+  color: #f5d76e; /* garante dourado puro */
+  text-shadow: 0 0 10px rgba(245,215,110,0.8);
 }
 
-@keyframes pulse {
-  0%,100% { text-shadow: 0 0 10px #f5d76e; }
-  50% { text-shadow: 0 0 20px #fffacd; }
+.save-date h2 {
+  font-size: 4.0em;
+  margin-bottom: 5px;
+}
+
+.save-date p {
+  font-size: 3.5em;
+  font-weight: 500;
+  letter-spacing: 2px;
 }
 
 @keyframes aparecer {
@@ -240,28 +229,13 @@ header p {
   .tempo h2{font-size:1.2em;}
   .tempo{min-width:40px;padding:5px 8px;}
   #contador{padding:8px;gap:5px;}
-  .save-date h2{font-size:1.8em;}
-  .save-date p{font-size:1.2em;}
-
-  /* Mantendo moldura estilo castelo no mobile */
   .save-date {
-    padding: 12px 18px;
-    border: 4px double #f5d76e;
-    border-radius: 15px;
-    background: rgba(0,0,0,0.5);
-    box-shadow: 0 0 15px rgba(245,215,110,0.7), 0 0 30px rgba(255,223,0,0.4) inset;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 2px solid #f5d76e;
   }
-  .save-date::before, .save-date::after {
-    width: 12px;
-    height: 20px;
-    top: -20px;
-  }
-}
-
-/* --- RESPONSIVIDADE --- */
-@media(max-width:320px){
-  .save-date h2{font-size:1.6em;}
-  .save-date p{font-size:1em;}
+  .save-date h2{font-size:1.8em; color:#f5d76e; text-shadow:0 0 8px rgba(245,215,110,0.8);}
+  .save-date p{font-size:1.2em; color:#f5d76e; text-shadow:0 0 8px rgba(245,215,110,0.8);}
 }
 </style>
 </head>
