@@ -60,7 +60,7 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* --- CASTELO COM PORTA --- */
+/* --- CARTA DUPLA --- */
 #cartaContainer {
   position: fixed;
   top: 50%; left: 50%;
@@ -69,30 +69,39 @@ body::before {
   height: clamp(180px, 60vw, 320px);
   perspective: 2000px;
   z-index: 10;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 
-/* Castelo */
-.castelo {
-  width: 100%;
-  height: 100%;
-  background: url('https://github.com/usuario/repositorio/blob/main/castelo.png?raw=true') no-repeat center/cover;
-  position: relative;
-}
-
-/* Porta animada */
-.porta {
+.carta-lado {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 40%;
-  height: 50%;
-  background: url('https://github.com/usuario/repositorio/blob/main/porta.png?raw=true') no-repeat center/cover;
-  transform: translateX(-50%) rotateY(0deg);
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #FFD700, #E6C200);
+  border: 3px solid #B8860B;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
   transform-origin: left;
-  transition: transform 2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  color: #3e2f0b;
+  backface-visibility: hidden;
+}
+
+.carta-lado.direito { 
+  left: 50%; 
+  transform-origin: right; 
+}
+
+@keyframes abrirCartaEsquerda {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-180deg); opacity:0; }
+}
+
+@keyframes abrirCartaDireita {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(180deg); opacity:0; }
 }
 
 /* --- ESCONDER CONTEÚDO ANTES --- */
@@ -113,7 +122,7 @@ header {
 
 header h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 3em; 
+  font-size: 3em; /* maior no mobile */
   margin: 0 auto 20px;
   color: #f5d76e;
   text-shadow: 0 0 15px rgba(255,215,0,0.9);
@@ -128,7 +137,7 @@ header h1 {
 }
 
 header h1 span:nth-child(2) {
-  font-size: 2em; 
+  font-size: 2em; /* maior no mobile */
   display: block;
   margin-top: 5px;
 }
@@ -152,8 +161,8 @@ header p {
   margin: 20px auto;
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* impede quebra de linha */
-  gap: 10px;
+  flex-wrap: nowrap;   /* forçar tudo na mesma linha */
+  gap: 8px;
   background: rgba(0,0,0,0.7);
   padding: 15px;
   border-radius: 15px;
@@ -162,16 +171,18 @@ header p {
   max-width: 95%;
   z-index: 1;
   position: relative;
-  overflow-x: auto;
+  overflow-x: auto;   /* permite scroll horizontal se necessário */
 }
 
 .tempo {
-  padding: 10px 14px;
+  padding: 8px 10px;       /* Ajustado para caber melhor */
   background: rgba(50,50,50,0.7);
   border-radius: 12px;
   border: 2px solid #f5d76e;
-  min-width: 60px;
+  min-width: 45px;         /* reduzido */
   box-shadow: 0 0 15px rgba(245,215,110,0.3);
+  flex-shrink: 1;          /* permite encolher se precisar */
+  white-space: nowrap;      /* evita quebra de linha */
 }
 
 .tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
@@ -187,12 +198,12 @@ header p {
 }
 
 .save-date h2 {
-  font-size: 5em; 
+  font-size: 5em; /* maior no mobile */
   margin-bottom: 8px;
 }
 
 .save-date p {
-  font-size: 4em; 
+  font-size: 4em; /* maior no mobile */
   font-weight: 500;
   letter-spacing: 2px;
 }
@@ -203,7 +214,7 @@ header p {
 }
 
 /* --- RESPONSIVIDADE --- */
-@media(max-width:768px){
+@media(max-width:768px){ /* Prioridade mobile/tablet */
   header h1{font-size:3em;padding:12px 25px;}
   header h1 span:nth-child(2){font-size:2em;}
   .tempo h2{font-size:1.8em;}
@@ -216,11 +227,10 @@ header p {
 </head>
 <body>
 
-<!-- CASTELO COM PORTA -->
+<!-- CARTA DUPLA -->
 <div id="cartaContainer">
-  <div class="castelo">
-    <div class="porta" id="porta"></div>
-  </div>
+  <div class="carta-lado esquerdo">Toque aqui</div>
+  <div class="carta-lado direito">Você é uma pessoa especial…</div>
 </div>
 
 <!-- CONTEÚDO -->
@@ -260,17 +270,18 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador, 1000);
 
-// Porta animada
+// Carta dupla: animação e revelar conteúdo (mais rápido)
+const esquerda = document.querySelector('.carta-lado.esquerdo');
+const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  const porta = document.getElementById('porta');
-  porta.style.transform = 'translateX(-50%) rotateY(-120deg)'; // abre a porta
-}, 500);
+  esquerda.style.animation = "abrirCartaEsquerda 4s ease-in-out forwards"; // reduzido
+  direita.style.animation = "abrirCartaDireita 4s ease-in-out forwards";  // reduzido
+}, 300);
 
-// Revelar conteúdo após a porta abrir
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 2500);
+}, 4300); // reduzido
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
