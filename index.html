@@ -270,20 +270,21 @@ const atualizarContador=()=>{
 };
 setInterval(atualizarContador,1000);
 
-// Animação porta central e luz janelas + mostrar conteúdo rápido
+// Animação porta central e luz janelas
 const portaEsq=document.querySelector('.porta.central-esquerda');
 const portaDir=document.querySelector('.porta.central-direita');
 const luzs=document.querySelectorAll('.luz-janela');
 
 setTimeout(()=>{
-  portaEsq.style.animation="abrirPortaCentralEsquerda 1s ease-in-out forwards";
-  portaDir.style.animation="abrirPortaCentralDireita 1s ease-in-out forwards";
+  portaEsq.style.animation="abrirPortaCentralEsquerda 2.5s ease-in-out forwards";
+  portaDir.style.animation="abrirPortaCentralDireita 2.5s ease-in-out forwards";
   luzs.forEach(l=>l.style.opacity=1);
+},200);
 
+setTimeout(()=>{
   document.getElementById('casteloContainer').style.display='none';
-  document.getElementById('conteudo').style.transition='opacity 0.3s ease';
   document.getElementById('conteudo').style.opacity=1;
-}, 2000);
+},2800);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
@@ -320,11 +321,12 @@ for(let i=0;i<15;i++){
   part.style.top='50%';
   part.style.left='50%';
   part.style.transformOrigin='-40px 0px';
-  part.style.animation=`girar${i} ${3+Math.random()*2}s linear infinite`;
+  part.style.animation=girar${i} ${3+Math.random()*2}s linear infinite;
   frase.appendChild(part);
 
+  // Criando keyframes dinâmicos
   const style = document.createElement('style');
-  style.textContent=`@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}}`;
+  style.textContent=@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}};
   document.head.appendChild(style);
 }
 </script>
