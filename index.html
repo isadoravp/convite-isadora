@@ -23,7 +23,7 @@ html, body {
   perspective: 1500px;
 }
 
-/* Fundo animado: dourado com preto (mantendo o mesmo movimento da anterior) */
+/* Fundo animado dourado/preto */
 body::before {
   content: "";
   position: fixed;
@@ -185,6 +185,31 @@ header p {
 .tempo h2 { margin:0; font-size:1.5em; color:#f5d76e; }
 .tempo span { font-size:0.8em; color:#fff; }
 
+/* --- SAVE THE DATE --- */
+.save-date {
+  font-family: 'Great Vibes', cursive;
+  color: #f5d76e;
+  text-shadow: 0 0 10px rgba(255,215,0,0.8);
+  margin-top: 15px;
+  animation: aparecer 2s ease-in-out both;
+}
+
+.save-date h2 {
+  font-size: 2.2em;
+  margin-bottom: 5px;
+}
+
+.save-date p {
+  font-size: 1.5em;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* --- RESPONSIVIDADE --- */
 @media(max-width:480px){
   html, body { overflow-x:hidden; }
@@ -194,6 +219,8 @@ header p {
   .tempo h2{font-size:1.2em;}
   .tempo{min-width:40px;padding:5px 8px;}
   #contador{padding:8px;gap:5px;}
+  .save-date h2{font-size:1.8em;}
+  .save-date p{font-size:1.2em;}
 }
 </style>
 </head>
@@ -208,14 +235,19 @@ header p {
 <!-- CONTEÚDO -->
 <div id="conteudo">
 <header>
-<h1><span>Isadora</span><span>15 anos</span></h1>
+  <h1><span>Isadora</span><span>15 anos</span></h1>
 
-<div id="contador">
-  <div class="tempo"><h2 id="dias">0</h2><span>Dias</span></div>
-  <div class="tempo"><h2 id="horas">0</h2><span>Horas</span></div>
-  <div class="tempo"><h2 id="minutos">0</h2><span>Min</span></div>
-  <div class="tempo"><h2 id="segundos">0</h2><span>Seg</span></div>
-</div>
+  <div id="contador">
+    <div class="tempo"><h2 id="dias">0</h2><span>Dias</span></div>
+    <div class="tempo"><h2 id="horas">0</h2><span>Horas</span></div>
+    <div class="tempo"><h2 id="minutos">0</h2><span>Min</span></div>
+    <div class="tempo"><h2 id="segundos">0</h2><span>Seg</span></div>
+  </div>
+
+  <div class="save-date">
+    <h2>Save the Date</h2>
+    <p>23/01</p>
+  </div>
 </header>
 </div>
 
