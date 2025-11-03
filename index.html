@@ -13,14 +13,16 @@
 /* --- BODY --- */
 html, body {
   width:100%;
-  min-height:100vh;
+  height:100%;
   font-family:'Poppins',sans-serif;
   background: linear-gradient(135deg,#000,#1a1a1a);
   color:#f5d76e;
   text-align:center;
-  overflow-x:hidden;
-  overflow-y:auto; /* permite scroll se o conteúdo for maior */
-  position:relative;
+  overflow:hidden; /* sem scroll */
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   perspective:1500px;
 }
 
