@@ -60,25 +60,6 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* --- ROSA MÁGICA --- */
-#rosaMagica {
-  position: fixed;
-  width: 100px;
-  height: 100px;
-  top: 50%;
-  left: 50%;
-  background: url('https://i.imgur.com/6b1O6Vr.png') no-repeat center/contain;
-  transform: translate(-50%, -50%) scale(0) rotate(0deg);
-  opacity: 0;
-  z-index: 15;
-  pointer-events: none;
-  transition: transform 1.8s ease, opacity 1.8s ease;
-}
-#rosaMagica.active {
-  transform: translate(-50%, -200px) scale(1.5) rotate(720deg);
-  opacity: 1;
-}
-
 /* --- CARTA DUPLA --- */
 #cartaContainer {
   position: fixed;
@@ -216,24 +197,17 @@ header p {
 .save-date h2 {
   font-size: 4.0em;
   margin-bottom: 5px;
-  animation: pulse 2s infinite;
 }
 
 .save-date p {
   font-size: 3.5em;
   font-weight: 500;
   letter-spacing: 2px;
-  animation: pulse 2s infinite;
 }
 
 @keyframes aparecer {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-  0%,100% { text-shadow: 0 0 10px #f5d76e; }
-  50% { text-shadow: 0 0 20px #fffacd; }
 }
 
 /* --- RESPONSIVIDADE --- */
@@ -251,9 +225,6 @@ header p {
 </style>
 </head>
 <body>
-
-<!-- ROSA MÁGICA -->
-<div id="rosaMagica"></div>
 
 <!-- CARTA DUPLA -->
 <div id="cartaContainer">
@@ -298,7 +269,20 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador, 1000);
 
-// Partículas mágicas iniciais
+// Carta dupla: animação e revelar conteúdo
+const esquerda = document.querySelector('.carta-lado.esquerdo');
+const direita = document.querySelector('.carta-lado.direito');
+setTimeout(() => {
+  esquerda.style.animation = "abrirCartaEsquerda 6.5s ease-in-out forwards";
+  direita.style.animation = "abrirCartaDireita 6.5s ease-in-out forwards";
+}, 500);
+
+setTimeout(() => {
+  document.getElementById('cartaContainer').style.display = 'none';
+  document.getElementById('conteudo').style.opacity = 1;
+}, 7500);
+
+// Partículas mágicas
 for(let i=0;i<30;i++){
   const p=document.createElement('div');
   p.classList.add('particle');
@@ -307,39 +291,7 @@ for(let i=0;i<30;i++){
   p.style.animationDuration=(3+Math.random()*3)+'s';
   document.body.appendChild(p);
 }
-
-// Rosa mágica
-const rosa = document.getElementById('rosaMagica');
-setTimeout(() => {
-  rosa.classList.add('active');
-
-  // Criar partículas extras junto com a rosa
-  for(let i=0;i<40;i++){
-    const p = document.createElement('div');
-    p.classList.add('particle');
-    p.style.left = `calc(50% + ${Math.random()*200-100}px)`;
-    p.style.top = `calc(50% + ${Math.random()*200-100}px)`;
-    p.style.width = `${3+Math.random()*4}px`;
-    p.style.height = p.style.width;
-    p.style.animationDuration = `${2+Math.random()*2}s`;
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(), 3000);
-  }
-}, 200);
-
-// Carta dupla: animação e revelar conteúdo
-const esquerda = document.querySelector('.carta-lado.esquerdo');
-const direita = document.querySelector('.carta-lado.direito');
-setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 6.5s ease-in-out forwards";
-  direita.style.animation = "abrirCartaDireita 6.5s ease-in-out forwards";
-}, 1000); // começa depois da rosa subir
-
-setTimeout(() => {
-  document.getElementById('cartaContainer').style.display = 'none';
-  document.getElementById('conteudo').style.opacity = 1;
-}, 7500);
-
 </script>
+
 </body>
 </html>
