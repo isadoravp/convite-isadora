@@ -60,44 +60,48 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* --- CARTA / CASTELO --- */
+/* --- CARTA DUPLA / CASTELO --- */
 #cartaContainer {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 400px;
+  width: clamp(280px, 90vw, 500px);
+  height: clamp(180px, 60vw, 320px);
   perspective: 2000px;
   z-index: 10;
 }
 
-.castelo {
-  position: relative;
-  width: 100%;
-}
-
-.castelo-img {
-  width: 100%;
-  display: block;
-}
-
-.porta {
+/* Castelo dividido em duas portas */
+.carta-lado {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 40%;
-  height: 45%;
-  background: brown;
+  width: 50%;
+  height: 100%;
+  background: url('https://i.imgur.com/2v0cH5L.png') no-repeat center/cover; /* exemplo de porta de castelo */
+  border-radius: 0;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
   transform-origin: left;
-  transform: rotateY(0deg);
-  border: 3px solid #654321;
-  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  color: #3e2f0b;
+  backface-visibility: hidden;
 }
 
-/* Animação da porta */
-@keyframes abrirPorta {
+.carta-lado.direito { 
+  left: 50%; 
+  transform-origin: right; 
+}
+
+@keyframes abrirCartaEsquerda {
   0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(-90deg); }
+  100% { transform: rotateY(-180deg); opacity:0; }
+}
+
+@keyframes abrirCartaDireita {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(180deg); opacity:0; }
 }
 
 /* --- ESCONDER CONTEÚDO ANTES --- */
@@ -118,7 +122,7 @@ header {
 
 header h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 3em;
+  font-size: 3em; /* maior no mobile */
   margin: 0 auto 20px;
   color: #f5d76e;
   text-shadow: 0 0 15px rgba(255,215,0,0.9);
@@ -133,7 +137,7 @@ header h1 {
 }
 
 header h1 span:nth-child(2) {
-  font-size: 2em;
+  font-size: 2em; /* maior no mobile */
   display: block;
   margin-top: 5px;
 }
@@ -157,8 +161,8 @@ header p {
   margin: 20px auto;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap; /* força todos na mesma linha */
+  gap: 8px;
   background: rgba(0,0,0,0.7);
   padding: 15px;
   border-radius: 15px;
@@ -167,15 +171,18 @@ header p {
   max-width: 95%;
   z-index: 1;
   position: relative;
+  overflow-x: auto; /* scroll horizontal se necessário */
 }
 
 .tempo {
-  padding: 10px 14px;
+  padding: 8px 10px;
   background: rgba(50,50,50,0.7);
   border-radius: 12px;
   border: 2px solid #f5d76e;
-  min-width: 60px;
+  min-width: 45px; 
   box-shadow: 0 0 15px rgba(245,215,110,0.3);
+  flex-shrink: 1;
+  white-space: nowrap; /* evita quebra de linha */
 }
 
 .tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
@@ -207,11 +214,11 @@ header p {
 }
 
 /* --- RESPONSIVIDADE --- */
-@media(max-width:768px){ 
+@media(max-width:768px){
   header h1{font-size:3em;padding:12px 25px;}
   header h1 span:nth-child(2){font-size:2em;}
   .tempo h2{font-size:1.8em;}
-  .tempo{min-width:60px;padding:10px 14px;}
+  .tempo{min-width:45px;padding:8px 10px;}
   #contador{padding:15px;gap:8px;}
   .save-date h2{font-size:5em;}
   .save-date p{font-size:4em;}
@@ -220,12 +227,10 @@ header p {
 </head>
 <body>
 
-<!-- CARTA / CASTELO -->
+<!-- CARTA DUPLA / CASTELO -->
 <div id="cartaContainer">
-  <div class="castelo">
-    <img src="https://www.pngitem.com/pimgs/m/506-5062595_castelo-da-bela-ea-fera-desenho-hd-png.png" alt="Castelo" class="castelo-img">
-    <div class="porta"></div>
-  </div>
+  <div class="carta-lado esquerdo"></div>
+  <div class="carta-lado direito"></div>
 </div>
 
 <!-- CONTEÚDO -->
@@ -265,16 +270,18 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador, 1000);
 
-// Porta do castelo: animação e revelar conteúdo
-const porta = document.querySelector('.porta');
+// Carta dupla: animação e revelar conteúdo (mais rápido)
+const esquerda = document.querySelector('.carta-lado.esquerdo');
+const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  porta.style.animation = "abrirPorta 3s ease-in-out forwards";
-}, 500);
+  esquerda.style.animation = "abrirCartaEsquerda 4s ease-in-out forwards";
+  direita.style.animation = "abrirCartaDireita 4s ease-in-out forwards";
+}, 300);
 
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 4000);
+}, 4300);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
