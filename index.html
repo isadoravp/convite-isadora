@@ -23,7 +23,7 @@ html, body {
   perspective: 1500px;
 }
 
-/* Fundo animado dourado */
+/* Fundo dourado animado */
 body::before {
   content: "";
   position: fixed;
@@ -58,7 +58,7 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* CASTELO CONTEINER */
+/* --- CASTELO CONTAINER --- */
 #casteloContainer {
   position: fixed;
   top: 50%; left: 50%;
@@ -92,12 +92,10 @@ body::before {
 /* Torres */
 .torre {
   position: absolute;
-  width: 15%;
-  height: 50%;
-  bottom: 50%;
   background: #FFD700;
   border: 3px solid #B8860B;
   border-radius: 5px;
+  bottom: 40%;
 }
 .torre::before {
   content: "";
@@ -110,26 +108,9 @@ body::before {
   border-right: 50% solid transparent;
   border-bottom: 60% solid #FFB800;
 }
-.torre::after {
-  content: "";
-  position: absolute;
-  top: -75%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 20px;
-  background: red;
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  animation: bandeira 1s infinite alternate;
-}
-@keyframes bandeira {
-  0% { transform: translateX(-50%) rotate(0deg); }
-  100% { transform: translateX(-50%) rotate(10deg); }
-}
-
-.torre.central { width: 20%; height: 60%; bottom: 40%; left: 40%; z-index:1; }
-.torre.esquerda { left: -5%; }
-.torre.direita { right: -5%; }
+.torre.central { width: 20%; height: 60%; left: 40%; z-index:1; }
+.torre.esquerda { width: 12%; height: 50%; left: -5%; }
+.torre.direita { width: 12%; height: 50%; right: -5%; }
 
 /* Muralha central */
 .muralha {
@@ -142,13 +123,13 @@ body::before {
   border-right: 3px solid #B8860B;
 }
 
-/* Portas */
+/* Portas proporcionais */
 .porta {
   position: absolute;
   bottom: 0;
-  width: 25%;
-  height: 40%;
-  left: 37.5%;
+  width: 15%;
+  height: 35%;
+  left: 42.5%;
   background: #8b4513;
   transform-origin: left;
   backface-visibility: hidden;
@@ -171,7 +152,7 @@ body::before {
 .janela3 { top: 35%; left: 40%; }
 .janela4 { top: 35%; right: 40%; }
 
-/* Animações portas */
+/* Animação portas */
 @keyframes abrirPortaEsquerda {
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(-120deg); opacity:0; }
@@ -284,18 +265,18 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador,1000);
 
-// Abrir portas do castelo e revelar conteúdo
+// Animar portas
 const portaEsq = document.querySelector('.porta.esquerda');
 const portaDir = document.querySelector('.porta.direita');
 setTimeout(()=>{
   portaEsq.style.animation="abrirPortaEsquerda 3s ease-in-out forwards";
   portaDir.style.animation="abrirPortaDireita 3s ease-in-out forwards";
-},300);
+},200);
 
 setTimeout(()=>{
   document.getElementById('casteloContainer').style.display='none';
   document.getElementById('conteudo').style.opacity=1;
-},3600);
+},3300);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
