@@ -43,19 +43,25 @@ body::before {
 }
 
 /* Partículas mágicas */
-.particle, .spark {
+.particle, .spark, .magic {
   position: fixed;
   border-radius:50%;
   opacity:0.8;
   pointer-events:none;
-  animation: float 6s linear infinite;
 }
-.particle { width:4px; height:4px; background: radial-gradient(circle,#ffea80,#b8860b); }
-.spark { width:2px; height:2px; background: radial-gradient(circle,#FFD700,#FFC700); animation-duration: 4s; }
+.particle { width:4px; height:4px; background: radial-gradient(circle,#ffea80,#b8860b); animation: float 6s linear infinite; }
+.spark { width:2px; height:2px; background: radial-gradient(circle,#FFD700,#FFC700); animation: float 4s linear infinite; }
+.magic { width:3px; height:3px; background: radial-gradient(circle,#FFD700,#FFFACD); animation: rise 6s linear infinite; }
 
+/* Animações */
 @keyframes float {
   0% { transform:translateY(0) translateX(0); opacity:1; }
   100% { transform:translateY(-800px) translateX(50px); opacity:0; }
+}
+@keyframes rise {
+  0% { transform:translateY(0) translateX(0); opacity:1; }
+  50% { opacity:0.8; }
+  100% { transform:translateY(-600px) translateX(20px); opacity:0; }
 }
 
 /* Castelo container */
@@ -286,6 +292,18 @@ for(let i=0;i<40;i++){
   s.style.height=(2+Math.random()*3)+'px';
   s.style.animationDuration=(3+Math.random()*3)+'s';
   document.body.appendChild(s);
+}
+
+// Brilho mágico subindo do castelo
+for(let i=0;i<25;i++){
+  const m=document.createElement('div');
+  m.classList.add('magic');
+  m.style.left=(40+Math.random()*20)+'%'; // central
+  m.style.top=(50+Math.random()*15)+'%';
+  m.style.width=(2+Math.random()*3)+'px';
+  m.style.height=(2+Math.random()*3)+'px';
+  m.style.animationDuration=(4+Math.random()*3)+'s';
+  document.body.appendChild(m);
 }
 </script>
 
