@@ -32,7 +32,7 @@ body::before {
   width:100%; height:100%;
   background: linear-gradient(120deg,#000,#2b1d00,#c8a800,#000);
   background-size:200% 200%;
-  animation: brilho-dourado 8s linear infinite;
+  animation: brilho-dourado 12s linear infinite;
   opacity:0.9;
   z-index:0;
   pointer-events:none;
@@ -59,16 +59,16 @@ body::before {
   100% { transform:translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* Castelo container ajustado para mobile */
+/* Castelo container menor */
 #casteloContainer {
   position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:90vw; 
-  max-width:500px;
-  height:80vw; 
-  max-height:500px;
+  width:80vw; 
+  max-width:400px;
+  height:60vw; 
+  max-height:350px;
   perspective:1500px;
   z-index:10;
 }
@@ -156,10 +156,11 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 
 /* Mobile fixes */
 @media (max-width:600px){
-  #casteloContainer { height:85vw; max-height:none; }
+  #casteloContainer { height:70vw; max-height:none; }
   .save-date-castelo { font-size:1.7em; }
   .save-date p, .save-date h2 { font-size:4em; }
   #contador { flex-wrap:wrap; }
+  body::before { background-size:150% 150%; } /* fundo mais leve para mobile */
 }
 </style>
 </head>
