@@ -46,12 +46,11 @@ body::before {
 .particle, .spark, .magic {
   position: fixed;
   border-radius:50%;
-  opacity:0.8;
   pointer-events:none;
 }
-.particle { width:4px; height:4px; background: radial-gradient(circle,#ffea80,#b8860b); animation: float 6s linear infinite; }
-.spark { width:2px; height:2px; background: radial-gradient(circle,#FFD700,#FFC700); animation: float 4s linear infinite; }
-.magic { width:3px; height:3px; background: radial-gradient(circle,#FFD700,#FFFACD); animation: rise 6s linear infinite; }
+.particle { width:4px; height:4px; background: radial-gradient(circle,#ffc0cb,#f5d76e); opacity:0.6; animation: float 6s linear infinite; }
+.spark { width:2px; height:2px; background: radial-gradient(circle,#FFD700,#FFC0CB); opacity:0.7; animation: float 4s linear infinite; }
+.magic { width:3px; height:3px; background: radial-gradient(circle,#FFD0A0,#FFD700); opacity:0.8; animation: rise 6s linear infinite; }
 
 /* Animações */
 @keyframes float {
@@ -75,33 +74,33 @@ body::before {
   z-index:10;
 }
 
-/* Castelo azul/dourado estilo Bela e a Fera */
+/* Castelo estilo Bela e a Fera, feminino */
 .castelo {
   position:relative;
   width:100%;
   height:100%;
-  background: linear-gradient(to bottom,#1a2a6c,#2a5298); /* Azul royal */
-  border:3px solid #FFD700; /* dourado */
-  border-radius:12px;
-  box-shadow:0 0 60px rgba(0,0,0,0.5);
+  background: linear-gradient(to bottom,#3b2a6c,#6b4ca5); /* azul arroxeado suave */
+  border:3px solid #FFD700;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(255,215,200,0.5);
 }
 
 /* Torres laterais */
 .torre {
   position:absolute;
   bottom:0;
-  border:3px solid #FFD700;
-  background: linear-gradient(to bottom,#1a2a6c,#2a5298);
-  border-radius:6px;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+  border:2px solid #FFD700;
+  background: linear-gradient(to bottom,#3b2a6c,#6b4ca5);
+  border-radius:10px;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.15);
 }
 .torre.esquerda { width:12%; height:50%; left:5%; }
 .torre.direita { width:12%; height:50%; right:5%; }
 
-/* Torre central (porta principal) */
-.torre.central { width:20%; height:65%; left:40%; z-index:2; border-radius:6px; }
+/* Torre central */
+.torre.central { width:20%; height:65%; left:40%; z-index:2; border-radius:12px; }
 
-/* Telhados */
+/* Telhados suavizados */
 .telhado {
   position:absolute;
   width:100%;
@@ -109,8 +108,8 @@ body::before {
   top:-40%;
   left:0;
   clip-path: polygon(50% 0%,0% 100%,100% 100%);
-  background: linear-gradient(145deg,#003399,#3366CC);
-  box-shadow: 0 -4px 8px rgba(0,0,0,0.4) inset,0 0 10px rgba(255,215,0,0.3);
+  background: linear-gradient(145deg,#5b4ccc,#a69bff);
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.2) inset,0 0 15px rgba(255,215,180,0.3);
   border-left:2px solid #FFD700;
   border-right:2px solid #FFD700;
 }
@@ -120,25 +119,25 @@ body::before {
   position:absolute;
   bottom:0;
   width:25%; height:65%;
-  background: linear-gradient(to bottom,#FFD700,#E6C200);
+  background: linear-gradient(to bottom,#FFD0A0,#FFB700);
   border:2px solid #B8860B;
-  border-radius:0 0 6px 6px;
-  box-shadow: inset -2px 0 10px rgba(0,0,0,0.2), inset 2px 0 10px rgba(0,0,0,0.2);
+  border-radius:0 0 8px 8px;
+  box-shadow: inset -2px 0 8px rgba(0,0,0,0.15), inset 2px 0 8px rgba(0,0,0,0.15);
   transform-origin:left;
   backface-visibility:hidden;
 }
 .porta.central-direita { left:50%; transform-origin:right; }
 .porta.central-esquerda { left:25%; }
 
-/* Janelas quadradas estilo Bela e a Fera */
+/* Janelas femininas */
 .luz-janela {
   position:absolute;
   width:12%; height:15%;
-  background: linear-gradient(to bottom,#88c0ff,#1f3d7a);
+  background: linear-gradient(to bottom,#ffc0cb,#ffb6c1);
   border:2px solid #FFD700;
-  border-radius:3px;
+  border-radius:5px;
   opacity:0;
-  box-shadow:0 0 15px #88c0ff;
+  box-shadow:0 0 12px #ffb6c1;
   animation: brilhoJanela 1.5s ease-in-out infinite alternate;
 }
 .luz1 { top:15%; left:10%; }
@@ -146,9 +145,9 @@ body::before {
 .luz3 { top:35%; left:40%; }
 .luz4 { top:35%; right:40%; }
 @keyframes brilhoJanela { 
-  0% { box-shadow:0 0 10px #88c0ff; opacity:0.6; } 
-  50% { box-shadow:0 0 25px #88c0ff; opacity:1; } 
-  100% { box-shadow:0 0 10px #88c0ff; opacity:0.6; } 
+  0% { box-shadow:0 0 6px #ffb6c1; opacity:0.5; } 
+  50% { box-shadow:0 0 18px #ffb6c1; opacity:1; } 
+  100% { box-shadow:0 0 6px #ffb6c1; opacity:0.5; } 
 }
 
 /* Animação abertura portas */
@@ -166,10 +165,10 @@ header h1 {
   margin:0 auto 20px;
   color:#f5d76e;
   text-shadow:0 0 15px rgba(255,215,0,0.9);
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.5);
   padding:12px 25px;
-  border-radius:15px;
-  border:3px solid #f5d76e;
+  border-radius:20px;
+  border:2px solid #f5d76e;
   display:inline-block;
   max-width:95%;
   word-wrap:break-word;
@@ -182,22 +181,22 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
   justify-content:center;
   flex-wrap:nowrap;
   gap:8px;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.6);
   padding:15px;
   border-radius:15px;
-  border:3px solid #f5d76e;
-  box-shadow:0 0 25px rgba(245,215,110,0.6);
+  border:2px solid #f5d76e;
+  box-shadow:0 0 20px rgba(245,180,180,0.5);
   max-width:95%;
   overflow-x:auto;
 }
-.tempo { padding:8px 10px; background: rgba(50,50,50,0.7); border-radius:12px; border:2px solid #f5d76e; min-width:45px; flex-shrink:1; white-space:nowrap; }
+.tempo { padding:8px 10px; background: rgba(50,50,50,0.6); border-radius:12px; border:2px solid #f5d76e; min-width:45px; flex-shrink:1; white-space:nowrap; }
 .tempo h2{ margin:0; font-size:1.8em; color:#f5d76e; }
 .tempo span{ font-size:1em; color:#fff; }
 
 .save-date {
   font-family: 'Great Vibes', cursive;
   color: #f5d76e;
-  text-shadow:0 0 15px rgba(255,215,0,1);
+  text-shadow:0 0 15px rgba(255,215,180,1);
   margin-top:20px;
   animation: aparecer 1s ease-in-out both;
 }
@@ -282,7 +281,7 @@ for(let i=0;i<30;i++){
   document.body.appendChild(p);
 }
 
-// Faíscas mágicas douradas
+// Faíscas mágicas douradas/rosa
 for(let i=0;i<40;i++){
   const s=document.createElement('div');
   s.classList.add('spark');
@@ -298,7 +297,7 @@ for(let i=0;i<40;i++){
 for(let i=0;i<25;i++){
   const m=document.createElement('div');
   m.classList.add('magic');
-  m.style.left=(40+Math.random()*20)+'%'; // central
+  m.style.left=(40+Math.random()*20)+'%';
   m.style.top=(50+Math.random()*15)+'%';
   m.style.width=(2+Math.random()*3)+'px';
   m.style.height=(2+Math.random()*3)+'px';
