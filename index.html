@@ -147,55 +147,14 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 .save-date h2{ font-size:5em; margin-bottom:8px; }
 .save-date p{
   font-size:4em;
-  font-weight:700; /* mais negrito */
+  font-weight:500;
   letter-spacing:2px;
   color:#FFD700;
-  text-shadow: 
-    0 0 10px #FFD700,
-    0 0 20px #FFD700,
-    0 0 30px #FFD700,
-    0 0 40px #FFE066,
-    0 0 55px #FFE066,
-    0 0 70px #FFFACD,
-    0 0 90px #FFFACD; /* camadas extras para maior brilho */
-  animation: neonBlink 1.2s ease-in-out infinite alternate; /* pisca mais rápido */
+  text-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700, 0 0 45px #FFD700;
+  animation: neonBlink 1.5s ease-in-out infinite alternate;
 }
-
-  
-@keyframes neonBlink {
-  0% {
-    text-shadow: 
-      0 0 10px #FFD700,
-      0 0 20px #FFD700,
-      0 0 30px #FFD700,
-      0 0 40px #FFE066,
-      0 0 55px #FFE066,
-      0 0 70px #FFFACD,
-      0 0 90px #FFFACD;
-  }
-  50% {
-    text-shadow: 
-      0 0 25px #FFD700,
-      0 0 50px #FFD700,
-      0 0 75px #FFD700,
-      0 0 100px #FFE066,
-      0 0 120px #FFE066,
-      0 0 140px #FFFACD,
-      0 0 160px #FFFACD;
-  }
-  100% {
-    text-shadow: 
-      0 0 10px #FFD700,
-      0 0 20px #FFD700,
-      0 0 30px #FFD700,
-      0 0 40px #FFE066,
-      0 0 55px #FFE066,
-      0 0 70px #FFFACD,
-      0 0 90px #FFFACD;
-  }
-}
-
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
+@keyframes neonBlink { 0% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } 50% { text-shadow:0 0 25px #FFD700,0 0 50px #FFD700; } 100% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } }
 
 </style>
 </head>
@@ -310,5 +269,7 @@ for(let i=0;i<15;i++){
   document.head.appendChild(style);
 }
 </script>
+
 </body>
 </html>
+
