@@ -321,12 +321,12 @@ for(let i=0;i<15;i++){
   part.style.top='50%';
   part.style.left='50%';
   part.style.transformOrigin='-40px 0px';
-  part.style.animation=girar${i} ${3+Math.random()*2}s linear infinite;
+  part.style.animation=`girar${i} ${3+Math.random()*2}s linear infinite`;
   frase.appendChild(part);
 
   // Criando keyframes dinâmicos
   const style = document.createElement('style');
-  style.textContent=@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}};
+  style.textContent=`@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}}`;
   document.head.appendChild(style);
 }
 </script>
