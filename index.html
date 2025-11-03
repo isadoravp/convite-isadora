@@ -23,7 +23,6 @@ html, body {
   perspective: 1500px;
 }
 
-/* Fundo animado dourado/preto */
 body::before {
   content: "";
   position: fixed;
@@ -60,54 +59,56 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* --- CARTA DUPLA --- */
-#cartaContainer {
+/* --- CASTELO COM PORTA 3D --- */
+#casteloContainer {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: clamp(280px, 90vw, 500px);
-  height: clamp(180px, 60vw, 320px);
+  height: clamp(320px, 70vw, 400px);
   perspective: 2000px;
   z-index: 10;
 }
 
-.carta-lado {
-  position: absolute;
-  width: 50%;
+.fachada {
+  position: relative;
+  width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #FFD700, #E6C200);
-  border: 3px solid #B8860B;
-  border-radius: 10px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  background: url('castelo-fachada.png') center/cover no-repeat;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.porta {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 60%;
+  background: url('porta-castelo.png') center/cover no-repeat;
   transform-origin: left;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Great Vibes', cursive;
-  font-size: 2em;
-  color: #3e2f0b;
   backface-visibility: hidden;
 }
 
-.carta-lado.direito { 
+.porta.direita { 
   left: 50%; 
   transform-origin: right; 
 }
 
-@keyframes abrirCartaEsquerda {
+/* Animação 3D das portas */
+@keyframes abrirPortaEsquerda {
   0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(-180deg); opacity:0; }
+  100% { transform: rotateY(-120deg); opacity:0; }
 }
 
-@keyframes abrirCartaDireita {
+@keyframes abrirPortaDireita {
   0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(180deg); opacity:0; }
+  100% { transform: rotateY(120deg); opacity:0; }
 }
 
 /* --- ESCONDER CONTEÚDO ANTES --- */
 #conteudo { 
   opacity: 0; 
-  transition: opacity 1s ease; 
+  transition: opacity 0.8s ease; 
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -136,24 +137,24 @@ header h1 {
   word-wrap: break-word;
 }
 
-header h1 span:nth-child(2) {
-  font-size: 2em;
-  display: block;
-  margin-top: 5px;
+header h1 span:nth-child(2){
+  font-size:2em;
+  display:block;
+  margin-top:5px;
 }
 
-header p {
-  margin: 10px auto 0;
-  font-size: 1em;
-  font-style: italic;
-  color: #fff5cc;
+header p{
+  margin:10px auto 0;
+  font-size:1em;
+  font-style:italic;
+  color:#fff5cc;
   background: rgba(0,0,0,0.6);
-  padding: 8px 15px;
-  border-radius: 12px;
-  display: inline-block;
-  box-shadow: 0 0 15px rgba(245,215,110,0.3);
-  max-width: 95%;
-  word-wrap: break-word;
+  padding:8px 15px;
+  border-radius:12px;
+  display:inline-block;
+  box-shadow:0 0 15px rgba(245,215,110,0.3);
+  max-width:95%;
+  word-wrap:break-word;
 }
 
 /* --- CONTADOR --- */
@@ -171,7 +172,7 @@ header p {
   max-width: 95%;
   z-index: 1;
   position: relative;
-  overflow-x: auto;
+  overflow-x:auto;
 }
 
 .tempo {
@@ -181,36 +182,28 @@ header p {
   border: 2px solid #f5d76e;
   min-width: 45px;
   box-shadow: 0 0 15px rgba(245,215,110,0.3);
-  flex-shrink: 1;
+  flex-shrink:1;
   white-space: nowrap;
 }
 
-.tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
-.tempo span { font-size:1em; color:#fff; }
+.tempo h2{margin:0;font-size:1.8em;color:#f5d76e;}
+.tempo span{font-size:1em;color:#fff;}
 
 /* --- SAVE THE DATE --- */
-.save-date {
-  font-family: 'Great Vibes', cursive;
-  color: #f5d76e;
-  text-shadow: 0 0 15px rgba(255,215,0,1);
-  margin-top: 20px;
-  animation: aparecer 1.5s ease-in-out both;
+.save-date{
+  font-family:'Great Vibes',cursive;
+  color:#f5d76e;
+  text-shadow:0 0 15px rgba(255,215,0,1);
+  margin-top:20px;
+  animation: aparecer 1s ease-in-out both;
 }
 
-.save-date h2 {
-  font-size: 5em;
-  margin-bottom: 8px;
-}
+.save-date h2{font-size:5em;margin-bottom:8px;}
+.save-date p{font-size:4em;font-weight:500;letter-spacing:2px;}
 
-.save-date p {
-  font-size: 4em;
-  font-weight: 500;
-  letter-spacing: 2px;
-}
-
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes aparecer{
+  from{opacity:0;transform:translateY(15px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 /* --- RESPONSIVIDADE --- */
@@ -227,10 +220,12 @@ header p {
 </head>
 <body>
 
-<!-- CARTA DUPLA -->
-<div id="cartaContainer">
-  <div class="carta-lado esquerdo">Toque aqui</div>
-  <div class="carta-lado direito">Salve esta data!</div>
+<!-- CASTELO -->
+<div id="casteloContainer">
+  <div class="fachada">
+    <div class="porta esquerda"></div>
+    <div class="porta direita"></div>
+  </div>
 </div>
 
 <!-- CONTEÚDO -->
@@ -270,18 +265,19 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador, 1000);
 
-// Carta dupla: animação e revelar conteúdo super rápido
-const esquerda = document.querySelector('.carta-lado.esquerdo');
-const direita = document.querySelector('.carta-lado.direito');
-setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 2s ease-in-out forwards"; 
-  direita.style.animation = "abrirCartaDireita 2s ease-in-out forwards";
-}, 100);
+// Animação das portas
+const esquerda = document.querySelector('.porta.esquerda');
+const direita = document.querySelector('.porta.direita');
 
 setTimeout(() => {
-  document.getElementById('cartaContainer').style.display = 'none';
+  esquerda.style.animation = "abrirPortaEsquerda 3s ease-in-out forwards";
+  direita.style.animation = "abrirPortaDireita 3s ease-in-out forwards";
+}, 300);
+
+setTimeout(() => {
+  document.getElementById('casteloContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 2000); // conteúdo aparece 2s após a carta abrir
+}, 3300);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
