@@ -272,16 +272,17 @@ setInterval(atualizarContador, 1000);
 
 // Carta dupla: animação e revelar conteúdo (mais rápido)
 const esquerda = document.querySelector('.carta-lado.esquerdo');
+const esquerda = document.querySelector('.carta-lado.esquerdo');
 const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 2.5s ease-in-out forwards"; // mais rápido
-  direita.style.animation = "abrirCartaDireita 2.5s ease-in-out forwards";  // mais rápido
-}, 100); // inicia quase imediatamente
+  esquerda.style.animation = "abrirCartaEsquerda 2s ease-in-out forwards"; // carta abre mais rápido
+  direita.style.animation = "abrirCartaDireita 2s ease-in-out forwards";
+}, 100);
 
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 2600); // mostra conteúdo logo após a animação
+}, 1800);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
