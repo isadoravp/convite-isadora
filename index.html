@@ -274,14 +274,14 @@ setInterval(atualizarContador, 1000);
 const esquerda = document.querySelector('.carta-lado.esquerdo');
 const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 4s ease-in-out forwards"; // reduzido
-  direita.style.animation = "abrirCartaDireita 4s ease-in-out forwards";  // reduzido
-}, 300);
+  esquerda.style.animation = "abrirCartaEsquerda 2.5s ease-in-out forwards"; // mais rápido
+  direita.style.animation = "abrirCartaDireita 2.5s ease-in-out forwards";  // mais rápido
+}, 100); // inicia quase imediatamente
 
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 4300); // reduzido
+}, 2600); // mostra conteúdo logo após a animação
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
