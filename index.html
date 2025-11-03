@@ -80,6 +80,25 @@ body::before {
   box-shadow:0 0 60px rgba(0,0,0,0.5);
 }
 
+/* Frase Salva esta data */
+.save-date-castelo {
+  position: absolute;
+  top: 5%; /* logo acima das portas */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  color: #FFD700;
+  text-shadow: 0 0 15px rgba(255,215,0,0.9);
+  animation: brilhoSaveDate 1.5s ease-in-out infinite alternate;
+  z-index: 20;
+}
+@keyframes brilhoSaveDate {
+  0% { text-shadow: 0 0 10px rgba(255,215,0,0.7); }
+  50% { text-shadow: 0 0 25px rgba(255,215,0,1); }
+  100% { text-shadow: 0 0 10px rgba(255,215,0,0.7); }
+}
+
 /* Torres laterais */
 .torre {
   position:absolute;
@@ -204,6 +223,7 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 
 <div id="casteloContainer">
   <div class="castelo">
+    <div class="save-date-castelo">Salva esta data</div>
     <div class="torre esquerda"><div class="telhado"></div></div>
     <div class="torre.central">
       <div class="telhado"></div>
