@@ -75,6 +75,22 @@ body::before {
   z-index:10;
 }
 
+/* Neblina dourada suave */
+.neblina {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: radial-gradient(circle, rgba(255,223,0,0.05), transparent 70%);
+  z-index:1;
+  animation: moverNeblina 20s linear infinite alternate;
+  pointer-events:none;
+}
+@keyframes moverNeblina {
+  0% { transform:translate(0,0) scale(1); opacity:0.6; }
+  50% { transform:translate(10px,15px) scale(1.05); opacity:0.8; }
+  100% { transform:translate(-10px,-15px) scale(1); opacity:0.6; }
+}
+
 /* Castelo azul/dourado */
 .castelo {
   position:relative;
@@ -84,6 +100,7 @@ body::before {
   border:3px solid #FFD700;
   border-radius:12px;
   box-shadow:0 0 60px rgba(0,0,0,0.5);
+  z-index:2;
 }
 
 /* Torres laterais */
@@ -219,6 +236,7 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 <body>
 
 <div id="casteloContainer">
+  <div class="neblina"></div>
   <div class="castelo">
     <div class="torre esquerda"><div class="telhado"></div><div class="bandeira esquerda"></div></div>
     <div class="torre central">
