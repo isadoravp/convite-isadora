@@ -64,20 +64,20 @@ body::before {
   top:50%; left:50%;
   transform:translate(-50%,-50%);
   width:90vw; max-width:500px;
-  height:65vw; max-height:420px;
+  height:65vw; max-height:400px;
   perspective:1500px;
   z-index:10;
 }
 
-/* Castelo azul/dourado cinematográfico */
+/* Castelo azul/dourado estilo Bela e a Fera */
 .castelo {
   position:relative;
   width:100%;
   height:100%;
-  background: linear-gradient(to bottom,#00264d,#003366);
-  border:3px solid #FFD700;
+  background: linear-gradient(to bottom,#1a2a6c,#2a5298); /* Azul royal */
+  border:3px solid #FFD700; /* dourado */
   border-radius:12px;
-  box-shadow:0 0 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,215,0,0.15);
+  box-shadow:0 0 60px rgba(0,0,0,0.5);
 }
 
 /* Torres laterais */
@@ -85,9 +85,9 @@ body::before {
   position:absolute;
   bottom:0;
   border:3px solid #FFD700;
-  background: linear-gradient(to bottom,#00264d,#003366);
+  background: linear-gradient(to bottom,#1a2a6c,#2a5298);
   border-radius:6px;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
 }
 .torre.esquerda { width:12%; height:50%; left:5%; }
 .torre.direita { width:12%; height:50%; right:5%; }
@@ -95,19 +95,18 @@ body::before {
 /* Torre central (porta principal) */
 .torre.central { width:20%; height:65%; left:40%; z-index:2; border-radius:6px; }
 
-/* Telhados curvos estilo cinematográfico */
+/* Telhados */
 .telhado {
   position:absolute;
   width:100%;
-  height:50%;
-  top:-50%;
+  height:40%;
+  top:-40%;
   left:0;
-  clip-path: polygon(50% 0%,15% 100%,85% 100%);
+  clip-path: polygon(50% 0%,0% 100%,100% 100%);
   background: linear-gradient(145deg,#003399,#3366CC);
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.4) inset,0 0 12px rgba(255,215,0,0.3);
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.4) inset,0 0 10px rgba(255,215,0,0.3);
   border-left:2px solid #FFD700;
   border-right:2px solid #FFD700;
-  border-radius:15% 15% 0 0;
 }
 
 /* Portas centrais */
@@ -117,7 +116,7 @@ body::before {
   width:25%; height:65%;
   background: linear-gradient(to bottom,#FFD700,#E6C200);
   border:2px solid #B8860B;
-  border-radius:0 0 8px 8px;
+  border-radius:0 0 6px 6px;
   box-shadow: inset -2px 0 10px rgba(0,0,0,0.2), inset 2px 0 10px rgba(0,0,0,0.2);
   transform-origin:left;
   backface-visibility:hidden;
@@ -125,22 +124,28 @@ body::before {
 .porta.central-direita { left:50%; transform-origin:right; }
 .porta.central-esquerda { left:25%; }
 
-/* Janelas quadradas estilo vitral azul */
+/* Janelas quadradas estilo Bela e a Fera */
 .luz-janela {
   position:absolute;
   width:12%; height:15%;
-  background: linear-gradient(135deg,#4da6ff,#80c1ff,#b3e0ff);
-  border-radius:4px;
+  background: linear-gradient(to bottom,#88c0ff,#1f3d7a);
+  border:2px solid #FFD700;
+  border-radius:3px;
   opacity:0;
+  box-shadow:0 0 15px #88c0ff;
   animation: brilhoJanela 1.5s ease-in-out infinite alternate;
 }
 .luz1 { top:15%; left:10%; }
 .luz2 { top:15%; right:10%; }
 .luz3 { top:35%; left:40%; }
 .luz4 { top:35%; right:40%; }
-@keyframes brilhoJanela { 0% { box-shadow:0 0 10px #80c1ff; opacity:0.6; } 50% { box-shadow:0 0 25px #80c1ff; opacity:1; } 100% { box-shadow:0 0 10px #80c1ff; opacity:0.6; } }
+@keyframes brilhoJanela { 
+  0% { box-shadow:0 0 10px #88c0ff; opacity:0.6; } 
+  50% { box-shadow:0 0 25px #88c0ff; opacity:1; } 
+  100% { box-shadow:0 0 10px #88c0ff; opacity:0.6; } 
+}
 
-/* Abertura portas */
+/* Animação abertura portas */
 @keyframes abrirPortaCentralEsquerda { 0%{transform:rotateY(0deg);}100%{transform:rotateY(-120deg);opacity:0;} }
 @keyframes abrirPortaCentralDireita { 0%{transform:rotateY(0deg);}100%{transform:rotateY(120deg);opacity:0;} }
 
@@ -193,7 +198,6 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 .save-date h2{ font-size:5em; margin-bottom:8px; }
 .save-date p{ font-size:4em; font-weight:500; letter-spacing:2px; }
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
-
 </style>
 </head>
 <body>
