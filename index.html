@@ -23,6 +23,7 @@ html, body {
   perspective: 1500px;
 }
 
+/* Fundo animado dourado/preto */
 body::before {
   content: "";
   position: fixed;
@@ -59,42 +60,69 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* --- CASTELO COM PORTA 3D --- */
+/* --- CASTELO --- */
 #casteloContainer {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: clamp(280px, 90vw, 500px);
-  height: clamp(320px, 70vw, 400px);
+  height: clamp(300px, 60vw, 350px);
   perspective: 2000px;
   z-index: 10;
 }
 
-.fachada {
+/* Castelo principal */
+.castelo {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url('castelo-fachada.png') center/cover no-repeat;
-  border-radius: 15px;
+  background: linear-gradient(to top, #c8a800 0%, #FFD700 100%);
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
   overflow: hidden;
 }
 
+/* Torres laterais */
+.torre {
+  position: absolute;
+  width: 15%;
+  height: 60%;
+  background: #FFD700;
+  top: -10%;
+  border: 3px solid #B8860B;
+  border-radius: 5px 5px 0 0;
+}
+
+.torre.esquerda { left: -5%; }
+.torre.direita { right: -5%; }
+
+/* Janelas */
+.janela {
+  position: absolute;
+  width: 15%;
+  height: 10%;
+  background: #3e2f0b;
+  border-radius: 2px;
+}
+
+.janela1 { top: 20%; left: 20%; }
+.janela2 { top: 20%; right: 20%; }
+.janela3 { top: 35%; left: 40%; }
+
+/* Porta do castelo */
 .porta {
   position: absolute;
+  width: 30%;
+  height: 40%;
   bottom: 0;
-  width: 50%;
-  height: 60%;
-  background: url('porta-castelo.png') center/cover no-repeat;
+  left: 35%;
+  background: #8b4513;
   transform-origin: left;
   backface-visibility: hidden;
 }
 
-.porta.direita { 
-  left: 50%; 
-  transform-origin: right; 
-}
+.porta.direita { left: 50%; transform-origin: right; }
 
-/* Animação 3D das portas */
 @keyframes abrirPortaEsquerda {
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(-120deg); opacity:0; }
@@ -108,7 +136,7 @@ body::before {
 /* --- ESCONDER CONTEÚDO ANTES --- */
 #conteudo { 
   opacity: 0; 
-  transition: opacity 0.8s ease; 
+  transition: opacity 1s ease; 
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -137,24 +165,20 @@ header h1 {
   word-wrap: break-word;
 }
 
-header h1 span:nth-child(2){
-  font-size:2em;
-  display:block;
-  margin-top:5px;
-}
+header h1 span:nth-child(2) { font-size: 2em; display: block; margin-top: 5px; }
 
-header p{
-  margin:10px auto 0;
-  font-size:1em;
-  font-style:italic;
-  color:#fff5cc;
+header p {
+  margin: 10px auto 0;
+  font-size: 1em;
+  font-style: italic;
+  color: #fff5cc;
   background: rgba(0,0,0,0.6);
-  padding:8px 15px;
-  border-radius:12px;
-  display:inline-block;
-  box-shadow:0 0 15px rgba(245,215,110,0.3);
-  max-width:95%;
-  word-wrap:break-word;
+  padding: 8px 15px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 0 15px rgba(245,215,110,0.3);
+  max-width: 95%;
+  word-wrap: break-word;
 }
 
 /* --- CONTADOR --- */
@@ -172,7 +196,7 @@ header p{
   max-width: 95%;
   z-index: 1;
   position: relative;
-  overflow-x:auto;
+  overflow-x: auto;
 }
 
 .tempo {
@@ -182,47 +206,42 @@ header p{
   border: 2px solid #f5d76e;
   min-width: 45px;
   box-shadow: 0 0 15px rgba(245,215,110,0.3);
-  flex-shrink:1;
+  flex-shrink: 1;
   white-space: nowrap;
 }
 
-.tempo h2{margin:0;font-size:1.8em;color:#f5d76e;}
-.tempo span{font-size:1em;color:#fff;}
+.tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
+.tempo span { font-size:1em; color:#fff; }
 
 /* --- SAVE THE DATE --- */
-.save-date{
-  font-family:'Great Vibes',cursive;
-  color:#f5d76e;
-  text-shadow:0 0 15px rgba(255,215,0,1);
-  margin-top:20px;
-  animation: aparecer 1s ease-in-out both;
+.save-date {
+  font-family: 'Great Vibes', cursive;
+  color: #f5d76e;
+  text-shadow: 0 0 15px rgba(255,215,0,1);
+  margin-top: 20px;
+  animation: aparecer 1.2s ease-in-out both;
 }
 
-.save-date h2{font-size:5em;margin-bottom:8px;}
-.save-date p{font-size:4em;font-weight:500;letter-spacing:2px;}
+.save-date h2 { font-size: 5em; margin-bottom: 8px; }
+.save-date p { font-size: 4em; font-weight: 500; letter-spacing: 2px; }
 
-@keyframes aparecer{
-  from{opacity:0;transform:translateY(15px);}
-  to{opacity:1;transform:translateY(0);}
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVIDADE --- */
-@media(max-width:768px){
-  header h1{font-size:3em;padding:12px 25px;}
-  header h1 span:nth-child(2){font-size:2em;}
-  .tempo h2{font-size:1.8em;}
-  .tempo{min-width:60px;padding:10px 14px;}
-  #contador{padding:15px;gap:8px;}
-  .save-date h2{font-size:5em;}
-  .save-date p{font-size:4em;}
-}
 </style>
 </head>
 <body>
 
 <!-- CASTELO -->
 <div id="casteloContainer">
-  <div class="fachada">
+  <div class="castelo">
+    <div class="torre esquerda"></div>
+    <div class="torre direita"></div>
+    <div class="janela janela1"></div>
+    <div class="janela janela2"></div>
+    <div class="janela janela3"></div>
     <div class="porta esquerda"></div>
     <div class="porta direita"></div>
   </div>
@@ -265,19 +284,19 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador, 1000);
 
-// Animação das portas
-const esquerda = document.querySelector('.porta.esquerda');
-const direita = document.querySelector('.porta.direita');
+// Abrir portas do castelo e revelar conteúdo
+const portaEsq = document.querySelector('.porta.esquerda');
+const portaDir = document.querySelector('.porta.direita');
 
 setTimeout(() => {
-  esquerda.style.animation = "abrirPortaEsquerda 3s ease-in-out forwards";
-  direita.style.animation = "abrirPortaDireita 3s ease-in-out forwards";
+  portaEsq.style.animation = "abrirPortaEsquerda 3s ease-in-out forwards";
+  portaDir.style.animation = "abrirPortaDireita 3s ease-in-out forwards";
 }, 300);
 
 setTimeout(() => {
   document.getElementById('casteloContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 3300);
+}, 3500);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
