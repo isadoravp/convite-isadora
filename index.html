@@ -19,7 +19,6 @@ html, body {
   color:#f5d76e;
   text-align:center;
   overflow-x:hidden;
-  overflow-y:hidden; /* remove scroll vertical */
   position:relative;
   perspective:1500px;
 }
@@ -65,8 +64,7 @@ body::before {
   top:50%; left:50%;
   transform:translate(-50%,-50%);
   width:90vw; max-width:500px;
-  height:auto;
-  max-height:100vh; /* garante que não ultrapasse a tela */
+  height:65vw; max-height:400px;
   perspective:1500px;
   z-index:10;
 }
@@ -76,8 +74,8 @@ body::before {
   position:relative;
   width:100%;
   height:100%;
-  background: linear-gradient(to bottom,#1a2a6c,#2a5298);
-  border:3px solid #FFD700;
+  background: linear-gradient(to bottom,#1a2a6c,#2a5298); /* Azul royal */
+  border:3px solid #FFD700; /* dourado */
   border-radius:12px;
   box-shadow:0 0 60px rgba(0,0,0,0.5);
 }
@@ -145,7 +143,7 @@ body::before {
 .porta.central-direita { left:50%; transform-origin:right; }
 .porta.central-esquerda { left:25%; }
 
-/* Janelas */
+/* Janelas quadradas estilo Bela e a Fera */
 .luz-janela {
   position:absolute;
   width:12%; height:15%;
@@ -217,7 +215,16 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
   animation: aparecer 1s ease-in-out both;
 }
 .save-date h2{ font-size:5em; margin-bottom:8px; }
-.save-date p{ font-size:4em; font-weight:500; letter-spacing:2px; }
+.save-date p{
+  font-size:4em;
+  font-weight:500;
+  letter-spacing:2px;
+  padding:10px 20px;
+  border:2px solid rgba(255,215,0,0.6);
+  border-radius:15px;
+  background: rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px rgba(255,215,0,0.7), 0 0 30px rgba(255,215,0,0.5);
+}
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
 </style>
 </head>
@@ -281,8 +288,12 @@ setTimeout(()=>{
   portaEsq.style.animation="abrirPortaCentralEsquerda 2.5s ease-in-out forwards";
   portaDir.style.animation="abrirPortaCentralDireita 2.5s ease-in-out forwards";
   luzs.forEach(l=>l.style.opacity=1);
-  document.getElementById('conteudo').style.opacity=1; // conteúdo abre ao mesmo tempo
 },200);
+
+setTimeout(()=>{
+  document.getElementById('casteloContainer').style.display='none';
+  document.getElementById('conteudo').style.opacity=1;
+},1800); // Conteúdo aparece mais rápido
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
@@ -322,6 +333,7 @@ for(let i=0;i<15;i++){
   part.style.animation=`girar${i} ${3+Math.random()*2}s linear infinite`;
   frase.appendChild(part);
 
+  // Criando keyframes dinâmicos
   const style = document.createElement('style');
   style.textContent=`@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}}`;
   document.head.appendChild(style);
