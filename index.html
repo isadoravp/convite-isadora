@@ -152,11 +152,21 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
   font-weight:500;
   letter-spacing:2px;
   color:#FFD700;
-  text-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700, 0 0 45px #FFD700;
+  text-shadow: 
+     0 0 10px #FFD700,
+     0 0 20px #FFD700,
+     0 0 40px #FFD700,
+     0 0 60px #FFD700,
+     0 0 80px #FFD700;
   animation: neonBlink 1.5s ease-in-out infinite alternate;
 }
+  
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
-@keyframes neonBlink { 0% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } 50% { text-shadow:0 0 25px #FFD700,0 0 50px #FFD700; } 100% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } }
+@keyframes neonBlink {
+  0% { text-shadow:0 0 20px #FFD700,0 0 40px #FFD700,0 0 60px #FFD700,0 0 80px #FFD700; }
+  50% { text-shadow:0 0 40px #FFD700,0 0 80px #FFD700,0 0 100px #FFD700,0 0 120px #FFD700; }
+  100% { text-shadow:0 0 20px #FFD700,0 0 40px #FFD700,0 0 60px #FFD700,0 0 80px #FFD700; }
+}
 
 </style>
 </head>
