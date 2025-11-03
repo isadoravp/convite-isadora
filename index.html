@@ -58,16 +58,16 @@ body::before {
 
 /* Castelo container */
 #casteloContainer {
-  position:relative; /* evita que fixed cause overflow */
-  margin:0 auto;
-  top:50%;
-  transform:translateY(-50%);
-  width:90vw;
-  max-width:500px;
-  height:65vw;
-  max-height:400px;
-  perspective:1500px;
-  z-index:10;
+  position: absolute; /* alterado de relative */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 500px;
+  height: 65vw;
+  max-height: 400px;
+  perspective: 1500px;
+  z-index: 10;
 }
 
 /* Castelo azul/dourado estilo Bela e a Fera */
