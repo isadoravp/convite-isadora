@@ -3,239 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>15 Anos Isadora</title>
+<title>15 Anos Isadora - Castelo</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap');
 
 /* --- RESET --- */
-* { box-sizing:border-box; margin:0; padding:0; }
-
-/* --- BODY --- */
-html, body {
-  width:100%;
-  height:100%;
-  font-family:'Poppins',sans-serif;
-  background: linear-gradient(135deg,#000,#1a1a1a);
-  color:#f5d76e;
-  text-align:center;
-  overflow-x:hidden;
-  position:relative;
-  perspective:1500px;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #001a33 0%, #6699cc 100%);
+  overflow-x: hidden;
+  perspective: 1500px;
+  min-height: 100vh;
+  color: #f5d76e;
+  text-align: center;
 }
 
-/* Fundo animado */
-body::before {
-  content:"";
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: linear-gradient(120deg,#000,#2b1d00,#c8a800,#000);
-  background-size:400% 400%;
-  animation: brilho-dourado 15s ease infinite;
-  opacity:0.9;
-  z-index:0;
-  pointer-events:none;
-}
-@keyframes brilho-dourado {
-  0% { background-position:0% 50%; }
-  50% { background-position:100% 50%; }
-  100% { background-position:0% 50%; }
-}
-
-/* Partículas mágicas */
+/* --- FOGO MÁGICO / PARTICULAS --- */
 .particle {
   position: fixed;
-  width:4px; height:4px;
-  background: radial-gradient(circle,#ffea80,#b8860b);
-  border-radius:50%;
-  opacity:0.8;
-  pointer-events:none;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ffea80, #b8860b);
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
   animation: float 6s linear infinite;
 }
 @keyframes float {
-  0% { transform:translateY(0) translateX(0); opacity:1; }
-  100% { transform:translateY(-800px) translateX(50px); opacity:0; }
+  0% { transform: translateY(0) translateX(0); opacity:1; }
+  100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* Castelo container */
-#casteloContainer {
-  position:fixed;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  width:90vw; max-width:500px;
-  height:65vw; max-height:380px;
-  perspective:1500px;
-  z-index:10;
+/* --- CASTELO --- */
+#cartaContainer {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(280px, 90vw, 500px);
+  height: clamp(280px, 60vw, 400px);
+  perspective: 2000px;
+  z-index: 10;
 }
 
-/* Castelo base */
+/* Castelo Central */
 .castelo {
-  position:relative;
-  width:100%;
-  height:100%;
-  background: linear-gradient(to bottom, #FFD700, #E6C200);
-  border:3px solid #B8860B;
-  border-radius:10px;
-  box-shadow:0 0 50px rgba(0,0,0,0.5);
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-/* Torres */
+/* Torres Laterais */
 .torre {
-  position:absolute;
-  bottom:0;
-  border:3px solid #B8860B;
-  background: linear-gradient(to bottom,#FFD700,#E6C200);
-  border-radius:5px;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+  position: absolute;
+  bottom: 0;
+  width: 20%;
+  height: 60%;
+  background: linear-gradient(to top, #888 0%, #bbb 100%);
+  border: 3px solid #666;
+  border-radius: 5px 5px 0 0;
+  box-shadow: inset -2px -4px 10px rgba(0,0,0,0.2);
 }
-.torre.central { width:20%; height:60%; left:40%; z-index:1; }
-.torre.esquerda { width:12%; height:50%; left:5%; }
-.torre.direita { width:12%; height:50%; right:5%; }
+
+.torre.esquerda { left: 0; }
+.torre.direita { right: 0; }
 
 /* Telhados */
 .telhado {
-  position:absolute;
-  width:100%;
-  height:40%;
-  top:-40%;
-  left:0;
-  clip-path: polygon(50% 0%,0% 100%,100% 100%);
-  background: linear-gradient(145deg,#FFB800,#FFA500);
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+  position: absolute;
+  bottom: 60%;
+  width: 0; height: 0;
+  border-left: 50% solid transparent;
+  border-right: 50% solid transparent;
+  border-bottom: 30% solid #990000;
 }
+
+.torre.esquerda .telhado { left: 0; transform: translateX(0%); }
+.torre.direita .telhado { right: 0; transform: translateX(0%); }
 
 /* Bandeiras */
 .bandeira {
-  position:absolute;
-  width:25%; height:15%;
-  top:-50%;
-  background:red;
-  clip-path: polygon(0 0,100% 50%,0 100%);
-  animation: bandeiraAnim 1.5s ease-in-out infinite alternate;
+  position: absolute;
+  top: -15%;
+  width: 20px;
+  height: 15px;
+  background: red;
+  transform-origin: left center;
+  animation: flag 1s infinite alternate;
 }
-.bandeira.central { left:37.5%; }
-.bandeira.esquerda { left:0%; }
-.bandeira.direita { left:auto; right:0%; }
-@keyframes bandeiraAnim {
+
+.torre.esquerda .bandeira { right: 10px; }
+.torre.direita .bandeira { left: 10px; }
+
+@keyframes flag {
   0% { transform: rotate(0deg); }
-  100% { transform: rotate(12deg); }
+  100% { transform: rotate(15deg); }
 }
 
-/* Portas */
+/* Castelo central maior */
+.castelo-central {
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 70%;
+  background: linear-gradient(to top, #888 0%, #ccc 100%);
+  border: 3px solid #666;
+  border-radius: 5px 5px 0 0;
+  box-shadow: inset -2px -4px 15px rgba(0,0,0,0.2);
+}
+
+/* Porta central */
 .porta {
-  position:absolute;
-  bottom:0;
-  width:15%; height:30%;
-  left:42.5%;
-  background: #8b4513;
-  box-shadow: inset -3px 0 10px rgba(0,0,0,0.3), inset 3px 0 10px rgba(0,0,0,0.3);
-  transform-origin:left;
-  backface-visibility:hidden;
-}
-.porta.direita {
-  left:50%;
-  transform-origin:right;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 20%;
+  height: 35%;
+  background: #552200;
+  border: 3px solid #331100;
+  border-radius: 0 0 10px 10px;
+  transform-origin: left;
+  backface-visibility: hidden;
+  animation: abrirPorta 3s forwards;
 }
 
-/* Janelas iluminadas */
+/* Janela */
 .janela {
-  position:absolute;
-  width:10%; height:12%;
-  background:#3e2f0b;
-  border-radius:3px;
-  box-shadow:0 0 10px #ffea80 inset;
-}
-.janela1 { top:15%; left:10%; }
-.janela2 { top:15%; right:10%; }
-.janela3 { top:35%; left:40%; }
-.janela4 { top:35%; right:40%; }
-
-/* Animação portas */
-@keyframes abrirPortaEsquerda {
-  0% { transform:rotateY(0deg); }
-  100% { transform:rotateY(-120deg); opacity:0; }
-}
-@keyframes abrirPortaDireita {
-  0% { transform:rotateY(0deg); }
-  100% { transform:rotateY(120deg); opacity:0; }
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  background: #ffe066;
+  border: 2px solid #aa8800;
+  top: 20%;
+  left: 10%;
+  border-radius: 3px;
 }
 
-/* Conteúdo inicial invisível */
-#conteudo { opacity:0; transition: opacity 0.7s ease; }
+/* Animação porta abrindo */
+@keyframes abrirPorta {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-120deg); opacity:1; }
+}
 
-/* Header, contador e save the date */
-header { padding:15px; position:relative; z-index:1; max-width:100vw; }
+/* --- ESCONDER CONTEÚDO --- */
+#conteudo {
+  opacity: 0;
+  transition: opacity 1s ease;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* --- HEADER --- */
+header {
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+  max-width: 100vw;
+}
+
 header h1 {
-  font-family:'Great Vibes', cursive;
-  font-size:3em;
-  margin:0 auto 20px;
-  color:#f5d76e;
-  text-shadow:0 0 15px rgba(255,215,0,0.9);
-  background: rgba(0,0,0,0.75);
-  padding:12px 25px;
-  border-radius:15px;
-  border:3px solid #f5d76e;
-  display:inline-block;
-  max-width:95%;
-  word-wrap:break-word;
-}
-header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
-
-#contador {
-  margin:20px auto;
-  display:flex;
-  justify-content:center;
-  flex-wrap:nowrap;
-  gap:8px;
-  background: rgba(0,0,0,0.7);
-  padding:15px;
-  border-radius:15px;
-  border:3px solid #f5d76e;
-  box-shadow:0 0 25px rgba(245,215,110,0.6);
-  max-width:95%;
-  overflow-x:auto;
-}
-.tempo { padding:8px 10px; background: rgba(50,50,50,0.7); border-radius:12px; border:2px solid #f5d76e; min-width:45px; flex-shrink:1; white-space:nowrap; }
-.tempo h2{ margin:0; font-size:1.8em; color:#f5d76e; }
-.tempo span{ font-size:1em; color:#fff; }
-
-.save-date {
   font-family: 'Great Vibes', cursive;
+  font-size: 3em;
+  margin: 0 auto 20px;
   color: #f5d76e;
-  text-shadow:0 0 15px rgba(255,215,0,1);
-  margin-top:20px;
-  animation: aparecer 1s ease-in-out both;
+  text-shadow: 0 0 15px rgba(255,215,0,0.9);
+  background: rgba(0,0,0,0.75);
+  padding: 12px 25px;
+  border-radius: 15px;
+  border: 3px solid #f5d76e;
+  display: inline-block;
+  box-shadow: 0 0 30px rgba(245,215,110,0.6);
 }
-.save-date h2{ font-size:5em; margin-bottom:8px; }
-.save-date p{ font-size:4em; font-weight:500; letter-spacing:2px; }
+
+header h1 span:nth-child(2) { font-size: 2em; display:block; margin-top:5px; }
+
+header p {
+  margin:10px auto 0; font-size:1em; font-style:italic;
+  color:#fff5cc; background: rgba(0,0,0,0.6);
+  padding:8px 15px; border-radius:12px;
+  display:inline-block; box-shadow:0 0 15px rgba(245,215,110,0.3);
+}
+
+/* Contador e save the date */
+#contador { display:flex; justify-content:center; gap:8px; margin:20px auto; background: rgba(0,0,0,0.7); padding:15px; border-radius:15px; border:3px solid #f5d76e; }
+.tempo { padding:8px 10px; background: rgba(50,50,50,0.7); border-radius:12px; border:2px solid #f5d76e; min-width:45px; white-space:nowrap; }
+.tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
+.tempo span { font-size:1em; color:#fff; }
+
+.save-date { font-family:'Great Vibes', cursive; color:#f5d76e; text-shadow:0 0 15px rgba(255,215,0,1); margin-top:20px; animation: aparecer 1.5s ease-in-out both;}
+.save-date h2 { font-size:5em; margin-bottom:8px; }
+.save-date p { font-size:4em; font-weight:500; letter-spacing:2px; }
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
+
+/* --- RESPONSIVO --- */
+@media(max-width:768px){
+  header h1{font-size:3em;padding:12px 25px;}
+  header h1 span:nth-child(2){font-size:2em;}
+  .tempo h2{font-size:1.8em;}
+  .tempo{min-width:50px;padding:8px 10px;}
+  #contador{gap:5px;}
+  .save-date h2{font-size:4em;}
+  .save-date p{font-size:3em;}
+}
 </style>
 </head>
 <body>
 
-<div id="casteloContainer">
+<!-- CASTELO -->
+<div id="cartaContainer">
   <div class="castelo">
-    <div class="torre esquerda"><div class="telhado"></div><div class="bandeira esquerda"></div></div>
-    <div class="torre central"><div class="telhado"></div><div class="bandeira central"></div></div>
-    <div class="torre direita"><div class="telhado"></div><div class="bandeira direita"></div></div>
-    <div class="janela janela1"></div>
-    <div class="janela janela2"></div>
-    <div class="janela janela3"></div>
-    <div class="janela janela4"></div>
-    <div class="porta esquerda"></div>
-    <div class="porta direita"></div>
+    <div class="torre esquerda">
+      <div class="telhado"></div>
+      <div class="bandeira"></div>
+    </div>
+    <div class="castelo-central">
+      <div class="janela"></div>
+      <div class="porta"></div>
+    </div>
+    <div class="torre direita">
+      <div class="telhado"></div>
+      <div class="bandeira"></div>
+    </div>
   </div>
 </div>
 
+<!-- CONTEÚDO -->
 <div id="conteudo">
 <header>
   <h1><span>Isadora</span><span>15 anos</span></h1>
+
   <div id="contador">
     <div class="tempo"><h2 id="dias">0</h2><span>Dias</span></div>
     <div class="tempo"><h2 id="horas">0</h2><span>Horas</span></div>
     <div class="tempo"><h2 id="minutos">0</h2><span>Min</span></div>
     <div class="tempo"><h2 id="segundos">0</h2><span>Seg</span></div>
   </div>
+
   <div class="save-date">
     <h2>Save the Date</h2>
     <p>23/01/2026</p>
@@ -245,29 +249,21 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
 
 <script>
 // Contador
-const dataEvento=new Date("January 23, 2026 21:00:00").getTime();
-const atualizarContador=()=>{
-  const agora=new Date().getTime();
-  const distancia=dataEvento-agora;
-  if(distancia<0)return;
-  document.getElementById("dias").textContent=Math.floor(distancia/(1000*60*60*24));
-  document.getElementById("horas").textContent=Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
-  document.getElementById("minutos").textContent=Math.floor((distancia%(1000*60*60))/(1000*60));
-  document.getElementById("segundos").textContent=Math.floor((distancia%(1000*60))/1000);
+const dataEvento = new Date("January 23, 2026 21:00:00").getTime();
+const atualizarContador = () => {
+  const agora = new Date().getTime();
+  const distancia = dataEvento - agora;
+  if(distancia < 0) return;
+  const dias = Math.floor(distancia / (1000*60*60*24));
+  const horas = Math.floor((distancia % (1000*60*60*24)) / (1000*60*60));
+  const minutos = Math.floor((distancia % (1000*60*60)) / (1000*60));
+  const segundos = Math.floor((distancia % (1000*60)) / 1000);
+  document.getElementById("dias").textContent = dias;
+  document.getElementById("horas").textContent = horas;
+  document.getElementById("minutos").textContent = minutos;
+  document.getElementById("segundos").textContent = segundos;
 };
-setInterval(atualizarContador,1000);
-
-// Animação portas e revelar conteúdo
-const esquerda=document.querySelector('.porta.esquerda');
-const direita=document.querySelector('.porta.direita');
-setTimeout(()=>{
-  esquerda.style.animation="abrirPortaEsquerda 2.5s ease-in-out forwards";
-  direita.style.animation="abrirPortaDireita 2.5s ease-in-out forwards";
-},200);
-setTimeout(()=>{
-  document.getElementById('casteloContainer').style.display='none';
-  document.getElementById('conteudo').style.opacity=1;
-},2800);
+setInterval(atualizarContador, 1000);
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
@@ -278,7 +274,17 @@ for(let i=0;i<30;i++){
   p.style.animationDuration=(3+Math.random()*3)+'s';
   document.body.appendChild(p);
 }
-</script>
 
+// Porta abrindo e mostrar conteúdo
+setTimeout(()=>{
+  document.querySelector('.porta').style.animation='abrirPorta 3s forwards';
+},500);
+
+setTimeout(()=>{
+  document.getElementById('cartaContainer').style.display='none';
+  document.getElementById('conteudo').style.opacity=1;
+},3800);
+
+</script>
 </body>
 </html>
