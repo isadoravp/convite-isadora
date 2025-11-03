@@ -58,19 +58,17 @@ body::before {
 
 /* Castelo container */
 #casteloContainer {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 500px;
-  height: 65vw;
-  max-height: 400px;
-  perspective: 1500px;
-  z-index: 10;
-  margin: 0; /* remove margin anterior */
+  position:relative;
+  margin:0 auto;
+  top:50%;
+  transform:translateY(-50%);
+  width:90vw;
+  max-width:500px;
+  height:65vw;
+  max-height:400px;
+  perspective:1500px;
+  z-index:10;
 }
-
 
 /* Castelo azul/dourado estilo Bela e a Fera */
 .castelo {
@@ -90,7 +88,7 @@ body::before {
   left:50%;
   transform: translateX(-50%);
   font-family:'Great Vibes', cursive;
-  font-size:2.5em;
+  font-size:2em; /* Alterado para 2em */
   color:#FFD700;
   text-shadow: 0 0 15px rgba(255,215,0,0.9);
   animation: brilhoSaveDate 1.5s ease-in-out infinite alternate;
@@ -152,12 +150,20 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
   font-weight:500;
   letter-spacing:2px;
   color:#FFD700;
-  text-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700, 0 0 45px #FFD700;
+  text-shadow:
+     0 0 10px #FFD700,
+     0 0 20px #FFD700,
+     0 0 30px #FFD700,
+     0 0 45px #FFFACD,
+     0 0 60px #FFFACD;
   animation: neonBlink 1.5s ease-in-out infinite alternate;
 }
 @keyframes aparecer { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
-@keyframes neonBlink { 0% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } 50% { text-shadow:0 0 25px #FFD700,0 0 50px #FFD700; } 100% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700; } }
-
+@keyframes neonBlink {
+  0% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700,0 0 30px #FFFACD; }
+  50% { text-shadow:0 0 25px #FFD700,0 0 50px #FFD700,0 0 75px #FFFACD; }
+  100% { text-shadow:0 0 10px #FFD700,0 0 20px #FFD700,0 0 30px #FFFACD; }
+}
 </style>
 </head>
 <body>
@@ -265,7 +271,6 @@ for(let i=0;i<15;i++){
   part.style.animation=`girar${i} ${3+Math.random()*2}s linear infinite`;
   frase.appendChild(part);
 
-  // Criando keyframes dinâmicos
   const style = document.createElement('style');
   style.textContent=`@keyframes girar${i} {0%{transform:rotate(0deg) translateX(40px) rotate(0deg);} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}}`;
   document.head.appendChild(style);
