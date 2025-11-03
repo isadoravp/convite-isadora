@@ -42,23 +42,16 @@ body::before {
   100% { background-position:0% 50%; }
 }
 
-/* Partículas mágicas básicas */
+/* Partículas mágicas */
 .particle, .spark {
   position: fixed;
-  width:4px; height:4px;
   border-radius:50%;
   opacity:0.8;
   pointer-events:none;
-  animation: float 6s linear infinite;
 }
+.particle { width:4px; height:4px; background: radial-gradient(circle,#ffea80,#b8860b); animation: float 6s linear infinite; }
+.spark { background: radial-gradient(circle,#FFD700,#FFC700); animation-duration: 4s; }
 
-/* Faíscas douradas mágicas */
-.spark {
-  background: radial-gradient(circle,#FFD700,#FFC700);
-  animation-duration: 4s;
-}
-
-/* Partículas flutuantes */
 @keyframes float {
   0% { transform:translateY(0) translateX(0); opacity:1; }
   100% { transform:translateY(-800px) translateX(50px); opacity:0; }
@@ -75,20 +68,22 @@ body::before {
   z-index:10;
 }
 
-/* Neblina dourada suave */
+/* Neblina dourada ondulante */
 .neblina {
   position:absolute;
   top:0; left:0;
-  width:100%; height:100%;
+  width:120%; height:120%;
   background: radial-gradient(circle, rgba(255,223,0,0.05), transparent 70%);
   z-index:1;
-  animation: moverNeblina 20s linear infinite alternate;
   pointer-events:none;
+  animation: neblinaOndulante 25s linear infinite;
 }
-@keyframes moverNeblina {
-  0% { transform:translate(0,0) scale(1); opacity:0.6; }
-  50% { transform:translate(10px,15px) scale(1.05); opacity:0.8; }
-  100% { transform:translate(-10px,-15px) scale(1); opacity:0.6; }
+@keyframes neblinaOndulante {
+  0%   { transform:translate(-10px,-10px) scale(1); opacity:0.6; }
+  25%  { transform:translate(15px,10px) scale(1.05); opacity:0.7; }
+  50%  { transform:translate(-10px,15px) scale(1.1); opacity:0.8; }
+  75%  { transform:translate(10px,-10px) scale(1.05); opacity:0.7; }
+  100% { transform:translate(-10px,-10px) scale(1); opacity:0.6; }
 }
 
 /* Castelo azul/dourado */
@@ -239,11 +234,11 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
   <div class="neblina"></div>
   <div class="castelo">
     <div class="torre esquerda"><div class="telhado"></div><div class="bandeira esquerda"></div></div>
-    <div class="torre central">
+    <div class="torre.central">
       <div class="telhado"></div>
       <div class="bandeira central"></div>
-      <div class="porta central-esquerda"></div>
-      <div class="porta central-direita"></div>
+      <div class="porta.central-esquerda"></div>
+      <div class="porta.central-direita"></div>
     </div>
     <div class="torre direita"><div class="telhado"></div><div class="bandeira direita"></div></div>
 
@@ -311,7 +306,7 @@ for(let i=0;i<30;i++){
   document.body.appendChild(p);
 }
 
-// Faíscas mágicas douradas
+// Faíscas douradas
 for(let i=0;i<40;i++){
   const s=document.createElement('div');
   s.classList.add('spark');
