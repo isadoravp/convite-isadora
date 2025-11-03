@@ -60,26 +60,6 @@ body::before {
   100% { transform: translateY(-800px) translateX(50px); opacity:0; }
 }
 
-/* --- ROSA MÁGICA --- */
-#rosaMagica {
-  position: fixed;
-  width: 100px;
-  height: 100px;
-  top: 50%;
-  left: 50%;
-  background: url('https://pngimg.com/uploads/rose/rose_PNG66731.png') no-repeat center/contain;
-  background-size: contain;
-  transform: translate(-50%, -50%) scale(0) rotate(0deg);
-  opacity: 0;
-  z-index: 15;
-  pointer-events: none;
-  transition: transform 1.8s ease, opacity 1.8s ease;
-}
-#rosaMagica.active {
-  transform: translate(-50%, -200px) scale(1.5) rotate(720deg);
-  opacity: 1;
-}
-
 /* --- CARTA DUPLA --- */
 #cartaContainer {
   position: fixed;
@@ -241,14 +221,14 @@ header p {
   margin: 5px 0;
 }
 
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes pulse {
   0%,100% { text-shadow: 0 0 10px #f5d76e; }
   50% { text-shadow: 0 0 20px #fffacd; }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- RESPONSIVIDADE --- */
@@ -266,9 +246,6 @@ header p {
 </style>
 </head>
 <body>
-
-<!-- ROSA MÁGICA -->
-<div id="rosaMagica"></div>
 
 <!-- CARTA DUPLA -->
 <div id="cartaContainer">
@@ -335,26 +312,6 @@ for(let i=0;i<30;i++){
   p.style.animationDuration=(3+Math.random()*3)+'s';
   document.body.appendChild(p);
 }
-
-// Rosa mágica
-const rosa = document.getElementById('rosaMagica');
-setTimeout(() => {
-  rosa.classList.add('active');
-
-  // partículas extras ao redor da rosa
-  for(let i=0;i<40;i++){
-    const p = document.createElement('div');
-    p.classList.add('particle');
-    p.style.left = `calc(50% + ${Math.random()*200-100}px)`;
-    p.style.top = `calc(50% + ${Math.random()*200-100}px)`;
-    p.style.width = `${3+Math.random()*4}px`;
-    p.style.height = p.style.width;
-    p.style.animationDuration = `${2+Math.random()*2}s`;
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(), 3000);
-  }
-
-}, 500); // atraso 500ms antes da rosa aparecer
 </script>
 
 </body>
