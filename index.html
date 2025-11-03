@@ -53,10 +53,7 @@ body::before {
 .particle { width:4px; height:4px; background: radial-gradient(circle,#ffea80,#b8860b); }
 .spark { width:2px; height:2px; background: radial-gradient(circle,#FFD700,#FFC700); animation-duration: 4s; }
 
-@keyframes float {
-  0% { transform:translateY(0) translateX(0); opacity:1; }
-  100% { transform:translateY(-800px) translateX(50px); opacity:0; }
-}
+@keyframes float { 0% { transform:translateY(0) translateX(0); opacity:1; } 100% { transform:translateY(-800px) translateX(50px); opacity:0; } }
 
 /* Castelo container */
 #casteloContainer {
@@ -69,13 +66,13 @@ body::before {
   z-index:10;
 }
 
-/* Castelo azul/dourado */
+/* Castelo estilo A Bela e a Fera */
 .castelo {
   position:relative;
   width:100%;
   height:100%;
-  background: linear-gradient(to bottom,#003366,#336699);
-  border:3px solid #FFD700;
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
+  border:3px solid #D4AF37;
   border-radius:12px;
   box-shadow:0 0 60px rgba(0,0,0,0.5);
 }
@@ -84,18 +81,18 @@ body::before {
 .torre {
   position:absolute;
   bottom:0;
-  border:3px solid #FFD700;
-  background: linear-gradient(to bottom,#003366,#336699);
+  border:3px solid #D4AF37;
+  background: linear-gradient(to bottom,#2A2C59,#4B3B70);
   border-radius:6px;
   box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
 }
 .torre.esquerda { width:12%; height:50%; left:5%; }
 .torre.direita { width:12%; height:50%; right:5%; }
 
-/* Torre central (porta principal) */
+/* Torre central */
 .torre.central { width:20%; height:65%; left:40%; z-index:2; border-radius:6px; }
 
-/* Telhados */
+/* Telhados dourados */
 .telhado {
   position:absolute;
   width:100%;
@@ -103,13 +100,13 @@ body::before {
   top:-40%;
   left:0;
   clip-path: polygon(50% 0%,0% 100%,100% 100%);
-  background: linear-gradient(145deg,#003399,#3366CC);
+  background: linear-gradient(145deg,#B8860B,#FFD700);
   box-shadow: 0 -4px 8px rgba(0,0,0,0.4) inset,0 0 10px rgba(255,215,0,0.3);
-  border-left:2px solid #FFD700;
-  border-right:2px solid #FFD700;
+  border-left:2px solid #D4AF37;
+  border-right:2px solid #D4AF37;
 }
 
-/* Bandeiras douradas pulsantes */
+/* Bandeiras douradas pulsantes (removida a central) */
 .bandeira {
   position:absolute;
   width:25%; height:15%;
@@ -118,7 +115,6 @@ body::before {
   clip-path: polygon(0 0,100% 50%,0 100%);
   animation: bandeiraAnim 2s ease-in-out infinite alternate, brilhoBandeira 1.5s ease-in-out infinite alternate;
 }
-.bandeira.central { left:37.5%; }
 .bandeira.esquerda { left:0%; }
 .bandeira.direita { left:auto; right:0%; }
 @keyframes bandeiraAnim { 0% { transform: rotate(0deg); } 100% { transform: rotate(10deg); } }
@@ -129,7 +125,7 @@ body::before {
   position:absolute;
   bottom:0;
   width:25%; height:65%;
-  background: linear-gradient(to bottom,#FFD700,#E6C200);
+  background: linear-gradient(to bottom,#D4AF37,#FFD700);
   border:2px solid #B8860B;
   border-radius:0 0 6px 6px;
   box-shadow: inset -2px 0 10px rgba(0,0,0,0.2), inset 2px 0 10px rgba(0,0,0,0.2);
@@ -139,7 +135,7 @@ body::before {
 .porta.central-direita { left:50%; transform-origin:right; }
 .porta.central-esquerda { left:25%; }
 
-/* Janelas quadradas estilo A Bela e a Fera */
+/* Janelas quadradas */
 .luz-janela {
   position:absolute;
   width:12%; height:15%;
@@ -154,7 +150,7 @@ body::before {
 .luz4 { top:35%; right:40%; }
 @keyframes brilhoJanela { 0% { box-shadow:0 0 10px #FFD700; opacity:0.6; } 50% { box-shadow:0 0 25px #FFD700; opacity:1; } 100% { box-shadow:0 0 10px #FFD700; opacity:0.6; } }
 
-/* Animação abertura portas */
+/* Abertura portas */
 @keyframes abrirPortaCentralEsquerda { 0%{transform:rotateY(0deg);}100%{transform:rotateY(-120deg);opacity:0;} }
 @keyframes abrirPortaCentralDireita { 0%{transform:rotateY(0deg);}100%{transform:rotateY(120deg);opacity:0;} }
 
@@ -217,7 +213,6 @@ header h1 span:nth-child(2){ font-size:2em; display:block; margin-top:5px; }
     <div class="torre esquerda"><div class="telhado"></div><div class="bandeira esquerda"></div></div>
     <div class="torre.central">
       <div class="telhado"></div>
-      <div class="bandeira central"></div>
       <div class="porta central-esquerda"></div>
       <div class="porta central-direita"></div>
     </div>
