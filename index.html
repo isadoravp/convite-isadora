@@ -65,8 +65,8 @@ body::before {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(280px, 80vw, 440px);
-  height: clamp(180px, 50vw, 280px);
+  width: clamp(280px, 90vw, 500px);
+  height: clamp(180px, 60vw, 320px);
   perspective: 2000px;
   z-index: 10;
 }
@@ -84,7 +84,7 @@ body::before {
   align-items: center;
   justify-content: center;
   font-family: 'Great Vibes', cursive;
-  font-size: 1.8em;
+  font-size: 2em;
   color: #3e2f0b;
   backface-visibility: hidden;
 }
@@ -114,7 +114,7 @@ body::before {
 
 /* --- HEADER --- */
 header {
-  padding: 20px;
+  padding: 15px;
   position: relative;
   z-index: 1;
   max-width: 100vw;
@@ -122,22 +122,22 @@ header {
 
 header h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 2.5em;
-  margin: 0 auto 15px;
+  font-size: 3em; /* maior no mobile */
+  margin: 0 auto 20px;
   color: #f5d76e;
-  text-shadow: 0 0 12px rgba(255,215,0,0.8);
+  text-shadow: 0 0 15px rgba(255,215,0,0.9);
   background: rgba(0,0,0,0.75);
-  padding: 10px 20px;
+  padding: 12px 25px;
   border-radius: 15px;
   border: 3px solid #f5d76e;
   display: inline-block;
-  box-shadow: 0 0 25px rgba(245,215,110,0.6);
+  box-shadow: 0 0 30px rgba(245,215,110,0.6);
   max-width: 95%;
   word-wrap: break-word;
 }
 
 header h1 span:nth-child(2) {
-  font-size: 1.5em;
+  font-size: 2em; /* maior no mobile */
   display: block;
   margin-top: 5px;
 }
@@ -164,7 +164,7 @@ header p {
   flex-wrap: wrap;
   gap: 10px;
   background: rgba(0,0,0,0.7);
-  padding: 10px;
+  padding: 15px; /* maior no mobile */
   border-radius: 15px;
   border: 3px solid #f5d76e;
   box-shadow: 0 0 25px rgba(245,215,110,0.6);
@@ -174,34 +174,33 @@ header p {
 }
 
 .tempo {
-  padding: 8px 12px;
+  padding: 10px 14px; /* maior no mobile */
   background: rgba(50,50,50,0.7);
   border-radius: 12px;
   border: 2px solid #f5d76e;
-  min-width: 50px;
+  min-width: 60px;
   box-shadow: 0 0 15px rgba(245,215,110,0.3);
 }
 
-.tempo h2 { margin:0; font-size:1.5em; color:#f5d76e; }
-.tempo span { font-size:0.8em; color:#fff; }
+.tempo h2 { margin:0; font-size:1.8em; color:#f5d76e; }
+.tempo span { font-size:1em; color:#fff; }
 
 /* --- SAVE THE DATE --- */
 .save-date {
   font-family: 'Great Vibes', cursive;
   color: #f5d76e;
-  text-shadow: 0 0 10px rgba(255,215,0,0.8);
-  margin-top: 15px;
-  animation: aparecer 2s ease-in-out both;
-  /* Moldura removida */
+  text-shadow: 0 0 15px rgba(255,215,0,1);
+  margin-top: 20px;
+  animation: aparecer 1.5s ease-in-out both;
 }
 
 .save-date h2 {
-  font-size: 4.0em;
-  margin-bottom: 5px;
+  font-size: 5em; /* maior no mobile */
+  margin-bottom: 8px;
 }
 
 .save-date p {
-  font-size: 3.5em;
+  font-size: 4em; /* maior no mobile */
   font-weight: 500;
   letter-spacing: 2px;
 }
@@ -212,16 +211,14 @@ header p {
 }
 
 /* --- RESPONSIVIDADE --- */
-@media(max-width:480px){
-  html, body { overflow-x:hidden; }
-  header h1{font-size:1.8em;padding:8px 12px;}
-  header h1 span:nth-child(2){font-size:1.2em;}
-  header p{font-size:0.9em;padding:6px 10px;}
-  .tempo h2{font-size:1.2em;}
-  .tempo{min-width:40px;padding:5px 8px;}
-  #contador{padding:8px;gap:5px;}
-  .save-date h2{font-size:2.5em;} /* Aumentado no mobile */
-  .save-date p{font-size:2em;}   /* Aumentado no mobile */
+@media(max-width:768px){ /* Prioridade mobile/tablet */
+  header h1{font-size:3em;padding:12px 25px;}
+  header h1 span:nth-child(2){font-size:2em;}
+  .tempo h2{font-size:1.8em;}
+  .tempo{min-width:60px;padding:10px 14px;}
+  #contador{padding:15px;gap:8px;}
+  .save-date h2{font-size:5em;}
+  .save-date p{font-size:4em;}
 }
 </style>
 </head>
@@ -270,18 +267,18 @@ const atualizarContador = () => {
 };
 setInterval(atualizarContador, 1000);
 
-// Carta dupla: animação e revelar conteúdo
+// Carta dupla: animação e revelar conteúdo (mais rápido)
 const esquerda = document.querySelector('.carta-lado.esquerdo');
 const direita = document.querySelector('.carta-lado.direito');
 setTimeout(() => {
-  esquerda.style.animation = "abrirCartaEsquerda 6.5s ease-in-out forwards";
-  direita.style.animation = "abrirCartaDireita 6.5s ease-in-out forwards";
-}, 500);
+  esquerda.style.animation = "abrirCartaEsquerda 4s ease-in-out forwards"; // reduzido
+  direita.style.animation = "abrirCartaDireita 4s ease-in-out forwards";  // reduzido
+}, 300);
 
 setTimeout(() => {
   document.getElementById('cartaContainer').style.display = 'none';
   document.getElementById('conteudo').style.opacity = 1;
-}, 7500);
+}, 4300); // reduzido
 
 // Partículas mágicas
 for(let i=0;i<30;i++){
